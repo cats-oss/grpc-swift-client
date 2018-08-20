@@ -1,0 +1,4 @@
+module BoringSSL {
+    umbrella "/Users/a12443/Documents/workspace/github/superchoice/proto-swift/grpc-swift-client/.build/checkouts/grpc-swift.git-1944885664151884802/Sources/BoringSSL/include"
+    export *
+}

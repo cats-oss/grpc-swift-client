@@ -7,7 +7,7 @@ build/
 DerivedData/
 protoc-gen-swift
 protoc-gen-swiftgrpc-client
-*.xcodeproj
+# *.xcodeproj
 
 ## Various settings
 *.pbxuser

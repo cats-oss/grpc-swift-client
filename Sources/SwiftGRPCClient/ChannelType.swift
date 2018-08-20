@@ -12,11 +12,11 @@ import SwiftGRPC
 public protocol ChannelType: class {
     var timeout: TimeInterval { get set }
 
-    func makeCall(_ method: CallMethod) -> CallType
+    func makeCall(_ method: CallMethod, timeout: TimeInterval?) -> CallType
 }
 
 extension Channel: ChannelType {
-    public func makeCall(_ method: CallMethod) -> CallType {
-        return makeCall(method.path, host: method.host)
+    public func makeCall(_ method: CallMethod, timeout: TimeInterval?) -> CallType {
+        return makeCall(method.path, host: method.host, timeout: timeout)
     }
 }

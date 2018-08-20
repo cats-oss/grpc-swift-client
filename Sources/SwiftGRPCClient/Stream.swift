@@ -36,7 +36,7 @@ open class Stream<R: Request>: Streaming {
     public required init(channel: ChannelType, request: Request, dependency: Dependency) {
         self.channel = channel
         self.request = request
-        self.call = channel.makeCall(request.method)
+        self.call = channel.makeCall(request.method, timeout: request.timeout)
         self.dependency = dependency
     }
 
@@ -71,7 +71,7 @@ open class Stream<R: Request>: Streaming {
     }
 
     open func refresh() {
-        call = channel.makeCall(request.method)
+        call = channel.makeCall(request.method, timeout: request.timeout)
         task.cancel()
     }
 }

@@ -52,6 +52,7 @@ public protocol Request {
     var metadata: Metadata { get }
     var method: CallMethod { get }
     var style: CallStyle { get }
+    var timeout: TimeInterval? { get }
 
     func buildRequest() -> InputType
     func buildRequest(_ message: Message) -> InputType
@@ -66,6 +67,10 @@ public protocol Request {
 public extension Request {
     var metadata: Metadata {
         return Metadata()
+    }
+
+    var timeout: TimeInterval? {
+        return nil
     }
 
     func intercept(metadata: Metadata) throws -> Metadata {

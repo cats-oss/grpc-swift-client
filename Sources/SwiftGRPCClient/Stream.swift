@@ -48,7 +48,7 @@ open class Stream<R: Request>: Streaming {
         do {
             switch request.style {
             case .unary:
-                try call.start(request) { response in
+                try call.start(request, dependency: dependency) { response in
                     if response.statusCode == .ok {
                         self.task.complete(.success(response))
                     } else {
@@ -57,7 +57,7 @@ open class Stream<R: Request>: Streaming {
                 }
 
             case .serverStreaming, .clientStreaming, .bidiStreaming:
-                try call.start(request, completion: nil)
+                try call.start(request, dependency: dependency, completion: nil)
                 task.complete(.success(nil))
 
             }

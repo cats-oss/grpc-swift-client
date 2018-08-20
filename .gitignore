@@ -5,6 +5,9 @@
 ## Build generated
 build/
 DerivedData/
+protoc-gen-swift
+protoc-gen-swiftgrpc-client
+*.xcodeproj
 
 ## Various settings
 *.pbxuser

@@ -18,8 +18,15 @@ public protocol Streaming: class {
     var dependency: Dependency { get }
     var messageQueue: MessageQueue<Message> { get }
 
+    /// Start connection to server. Does not have to call this because it is called internally.
+    ///
+    /// - Parameter completion: closure called when started connection
     func start(_ completion: @escaping (Result<CallResult?>) -> Void)
+
+    /// Abort connection to server
     func cancel()
+
+    /// Discard internally held `Call` objects.
     func refresh()
 }
 
@@ -77,6 +84,10 @@ open class Stream<R: Request>: Streaming {
 }
 
 extension Streaming where Request: UnaryRequest {
+    /// For Unary connection
+    ///
+    /// - Parameter completion: closure called when completed connection
+    /// - Returns: Streaming object
     @discardableResult
     public func data(_ completion: @escaping (Result<Request.OutputType>) -> Void) -> Self {
         start { [weak self] result in
@@ -123,6 +134,12 @@ extension Streaming where Request: SendRequest, Message == Request.Message {
         }
     }
 
+    /// For send message to server
+    ///
+    /// - Parameters:
+    ///   - message: object sending to server
+    ///   - completion: closure called when message sending is completed
+    /// - Returns: Streaming object
     @discardableResult
     public func send(_ message: Message, completion: @escaping (Result<Void>) -> Void) -> Self {
         start { [weak self] result in
@@ -165,6 +182,10 @@ extension Streaming where Request: SendRequest, Message == Request.Message {
 }
 
 extension Streaming where Request: ReceiveRequest {
+    /// For receive message from server
+    ///
+    /// - Parameter completion: closure called when receive data from server
+    /// - Returns: Streaming object
     @discardableResult
     public func receive(_ completion: @escaping (Result<Request.OutputType?>) -> Void) -> Self {
         start { [weak self] result in
@@ -207,6 +228,9 @@ extension Streaming where Request: ReceiveRequest {
 }
 
 extension Streaming where Request: CloseRequest {
+    /// For closing streaming
+    ///
+    /// - Parameter completion: closure called when completed connection
     public func close(_ completion: @escaping (Result<Void>) -> Void) {
         start { [weak self] result in
             guard let me = self else {
@@ -229,6 +253,9 @@ extension Streaming where Request: CloseRequest {
 }
 
 extension Streaming where Request: CloseAndReciveRequest {
+    /// For closing streaming and receive data from server
+    ///
+    /// - Parameter completion: closure called when receive data from server
     public func closeAndReceive(_ completion: @escaping (Result<Request.OutputType>) -> Void) {
         start { [weak self] result in
             guard let me = self else {

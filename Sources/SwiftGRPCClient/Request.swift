@@ -16,6 +16,7 @@ public protocol ReceiveRequest: Request {}
 public protocol CloseRequest: Request {}
 public protocol CloseAndReciveRequest: Request {}
 
+/// Unary connection is possible.
 public protocol UnaryStreamingRequest: UnaryRequest {}
 extension UnaryStreamingRequest {
     public var style: CallStyle {
@@ -23,6 +24,7 @@ extension UnaryStreamingRequest {
     }
 }
 
+/// It is possible to receive data continuously from the server.
 public protocol ServerStreamingRequest: ReceiveRequest {}
 extension ServerStreamingRequest {
     public var style: CallStyle {
@@ -30,6 +32,7 @@ extension ServerStreamingRequest {
     }
 }
 
+/// It is possible to send data continuously to the server. Data can be received only once when connection is completed.
 public protocol ClientStreamingRequest: SendRequest, CloseAndReciveRequest {}
 extension ClientStreamingRequest {
     public var style: CallStyle {
@@ -37,6 +40,7 @@ extension ClientStreamingRequest {
     }
 }
 
+/// It is possible to send and receive data bi-directionally with the server.
 public protocol BidirectionalStreamingRequest: ReceiveRequest, SendRequest, CloseRequest {}
 extension BidirectionalStreamingRequest {
     public var style: CallStyle {
@@ -49,18 +53,54 @@ public protocol Request {
     associatedtype OutputType
     associatedtype Message
 
+    /// Metadata sent with gRPC messages
     var metadata: Metadata { get }
+
+    /// Streaming Method
     var method: CallMethod { get }
+    
+    /// Streaming type
     var style: CallStyle { get }
+
+    /// A timeout value in seconds. If nil, used timeout value of Session as default.
     var timeout: TimeInterval? { get }
 
+    /// Create a Request object for sending to server finally
+    ///
+    /// - Returns: Request object for sending to server
     func buildRequest() -> InputType
+
+    /// Create a Request object for sending to server finally
+    ///
+    /// - Parameter message: object to be sent
+    /// - Returns: Request object for sending to server
     func buildRequest(_ message: Message) -> InputType
 
+    /// Serialize Request object to `Data`. Call `buildRequest()` internally.
+    ///
+    /// - Returns: serialized `Data` of Request object
+    /// - Throws: Error when fail to build request
     func serialized() throws -> Data
+
+    /// Serialize Request object to `Data`. Call `buildRequest()` internally.
+    ///
+    /// - Parameter message: object to be sent
+    /// - Returns: serialized `Data` of Request object
+    /// - Throws: Error when fail to build request
     func serialized(_ message: Message) throws -> Data
 
+    /// Called just before sending the request.
+    ///
+    /// - Parameter metadata: Metadata to be sent
+    /// - Returns: Metadata changed as necessary
+    /// - Throws: Error when intercepting request
     func intercept(metadata: Metadata) throws -> Metadata
+
+    /// Parse Data of the response into Response object
+    ///
+    /// - Parameter data: response Data
+    /// - Returns: Parsed Response object
+    /// - Throws: Error when parse
     func parse(data: Data) throws -> OutputType
 }
 

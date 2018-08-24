@@ -141,23 +141,24 @@ extension Streaming where Request: SendRequest, Message == Request.Message {
     ///   - completion: closure called when message sending is completed
     /// - Returns: Streaming object
     @discardableResult
-    public func send(_ message: Message, completion: @escaping (Result<Void>) -> Void) -> Self {
+    public func send(_ message: Message, completion: ((Result<Void>) -> Void)? = nil) -> Self {
         start { [weak self] result in
             guard let me = self else {
                 return
             }
 
             if case .failure(let error) = result {
-                return completion(.failure(error))
+                completion?(.failure(error))
+                return
             }
 
-            func sendRecursive(_ message: Message, completion: @escaping (Result<Void>) -> Void) {
+            func sendRecursive(_ message: Message, completion: ((Result<Void>) -> Void)?) {
                 func onCompleted(_ error: Error? = nil) {
                     // completion?(operationGroup.success ? nil : CallError.unknown)
                     if let error = error {
-                        completion(.failure(error))
+                        completion?(.failure(error))
                     } else {
-                        completion(.success(()))
+                        completion?(.success(()))
                     }
                     me.messageQueue.popFirst().map(sendRecursive)
                 }

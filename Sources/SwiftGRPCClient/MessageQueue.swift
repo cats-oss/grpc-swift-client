@@ -9,7 +9,7 @@
 import Foundation
 
 public final class MessageQueue<Message> {
-    typealias Element = (Message, (Result<Void>) -> Void)
+    typealias Element = (Message, ((Result<Void>) -> Void)?)
     private let lock = NSLock()
     private var queue: ContiguousArray<Element> = []
 

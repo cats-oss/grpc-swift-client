@@ -243,6 +243,7 @@ extension Streaming where Request: CloseRequest {
 
             do {
                 try me.call.close {
+                    me.refresh()
                     completion(.success(()))
                 }
             } catch {
@@ -272,6 +273,7 @@ extension Streaming where Request: CloseAndReciveRequest {
                         return completion(.failure(RPCError.callError(callResult)))
                     }
                     if let parsedData = try? me.request.parse(data: data) {
+                        me.refresh()
                         completion(.success(parsedData))
                     } else {
                         completion(.failure(RPCError.invalidMessageReceived))

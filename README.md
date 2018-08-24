@@ -1,8 +1,11 @@
 # Swift gRPC Client
 
-Client-side library that depends on `SwiftGRPC` which is a library of `gRPC` written in Swift.
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Version](https://img.shields.io/cocoapods/v/SwiftGRPCClient.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGRPCClient)
+[![License](https://img.shields.io/cocoapods/l/SwiftGRPCClient.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGRPCClient)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftGRPCClient.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGRPCClient)
 
-Basically it is used the function of `Core` part of `SwiftGRPC`, but it is made to make client implementation easier. 
+Client-side library that depends on [SwiftGRPC](https://github.com/grpc/grpc-swift) which is a library of [gRPC](https://grpc.io/) written in Swift. Basically it is used the function of `Core` part of `SwiftGRPC`, but it is made to make client implementation easier. 
 
 The following two modules are included.
 

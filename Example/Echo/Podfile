@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+
+target 'Echo' do
+  use_frameworks!
+
+  pod 'SwiftGRPCClient', :path => '../../'
+
+end

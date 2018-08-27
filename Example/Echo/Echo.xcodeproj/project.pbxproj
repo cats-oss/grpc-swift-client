@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A1B0E156B2561E2FE705417 /* Pods_Echo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8626176CE8D72DEDC4EAD76 /* Pods_Echo.framework */; };
 		C7559017212F9CA500FCF504 /* echo.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7559016212F9CA500FCF504 /* echo.grpc.swift */; };
-		C755901A212F9CC500FCF504 /* EchoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7559019212F9CC500FCF504 /* EchoProvider.swift */; };
+		C76F5AE421315BE400BE7A7E /* EchoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F5AE321315BE400BE7A7E /* EchoProvider.swift */; };
 		C7AB78A6212F2180005D21DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB78A5212F2180005D21DC /* AppDelegate.swift */; };
 		C7AB78A8212F2180005D21DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB78A7212F2180005D21DC /* ViewController.swift */; };
 		C7AB78AB212F2180005D21DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7AB78A9212F2180005D21DC /* Main.storyboard */; };
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		4FFE22EDEC45B3B0F1972A03 /* Pods-Echo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Echo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Echo/Pods-Echo.debug.xcconfig"; sourceTree = "<group>"; };
 		C7559016212F9CA500FCF504 /* echo.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = echo.grpc.swift; sourceTree = "<group>"; };
-		C7559019212F9CC500FCF504 /* EchoProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EchoProvider.swift; path = Echo/EchoProvider.swift; sourceTree = SOURCE_ROOT; };
+		C76F5AE321315BE400BE7A7E /* EchoProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EchoProvider.swift; sourceTree = "<group>"; };
 		C7AB78A2212F2180005D21DC /* Echo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Echo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AB78A5212F2180005D21DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7AB78A7212F2180005D21DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 		C7559018212F9CB800FCF504 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				C7559019212F9CC500FCF504 /* EchoProvider.swift */,
+				C76F5AE321315BE400BE7A7E /* EchoProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 				C7AB78D1212F29AA005D21DC /* EchoClientRequest.swift in Sources */,
 				C7AB78D0212F29AA005D21DC /* EchoServerRequest.swift in Sources */,
 				C7AB78A8212F2180005D21DC /* ViewController.swift in Sources */,
-				C755901A212F9CC500FCF504 /* EchoProvider.swift in Sources */,
+				C76F5AE421315BE400BE7A7E /* EchoProvider.swift in Sources */,
 				C7AB78A6212F2180005D21DC /* AppDelegate.swift in Sources */,
 				C7AB78C7212F26C9005D21DC /* echo.grpc.client.swift in Sources */,
 				C7AB78DB212F8A52005D21DC /* Session+Shared.swift in Sources */,

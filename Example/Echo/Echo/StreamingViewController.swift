@@ -11,6 +11,8 @@ import SwiftGRPC
 import SwiftGRPCClient
 
 class StreamingViewController: UIViewController {
+    @IBOutlet weak var textView: UITextView!
+
     var style: CallStyle?
 
     var count = 0
@@ -27,13 +29,19 @@ class StreamingViewController: UIViewController {
         bidiStream.cancel()
     }
 
+    func print<T>(_ value: T) {
+        DispatchQueue.main.async {
+            self.textView.text = "\(value)\n" + self.textView.text
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if style == .bidiStreaming {
             bidiStream
-                .receive {
-                    print($0)
+                .receive { [weak self] in
+                    self?.print($0)
                 }
         }
     }
@@ -46,26 +54,26 @@ class StreamingViewController: UIViewController {
         switch style {
         case .unary:
             unaryStream = Session.shared.stream(with: EchoUnaryRequest(text: "send message"))
-                .data {
-                    print($0)
+                .data { [weak self] in
+                    self?.print($0)
                 }
 
         case .serverStreaming:
             serverStream = Session.shared.stream(with: EchoServerRequest())
-                .receive {
-                    print($0)
+                .receive { [weak self] in
+                    self?.print($0)
                 }
 
         case .clientStreaming:
             clientStream
-                .send("\(count)") { result in
-                    print(result)
+                .send("\(count)") { [weak self] in
+                    self?.print($0)
                 }
 
         case .bidiStreaming:
             bidiStream
-                .send("\(count)") {
-                    print($0)
+                .send("\(count)") { [weak self] in
+                    self?.print($0)
                 }
 
         }
@@ -83,17 +91,17 @@ class StreamingViewController: UIViewController {
 
         case .clientStreaming:
             clientStream
-                .closeAndReceive {
-                    print($0)
+                .closeAndReceive { [weak self] in
+                    self?.print($0)
                 }
 
         case .bidiStreaming:
             bidiStream
                 .close { [weak self] in
-                    print($0)
+                    self?.print($0)
                     self?.bidiStream
                         .receive {
-                            print($0)
+                            self?.print($0)
                         }
                 }
 

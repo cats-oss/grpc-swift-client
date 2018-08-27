@@ -94,21 +94,34 @@
                                     <action selector="stopButtonDidTapWithSender:" destination="iqo-yQ-CgQ" eventType="touchUpInside" id="GvB-D3-DLn"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Print Log" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PTW-s7-i8d">
+                                <rect key="frame" x="0.0" y="130" width="375" height="537"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oBI-7O-bv1" firstAttribute="top" secondItem="Zjd-Ac-NQ2" secondAttribute="top" constant="20" id="6yr-EC-zD1"/>
+                            <constraint firstItem="PTW-s7-i8d" firstAttribute="trailing" secondItem="Zjd-Ac-NQ2" secondAttribute="trailing" id="7cP-kw-Ees"/>
                             <constraint firstItem="VtD-S1-vnS" firstAttribute="leading" secondItem="Zjd-Ac-NQ2" secondAttribute="leading" constant="40" id="CWL-Eh-cKD"/>
                             <constraint firstItem="VtD-S1-vnS" firstAttribute="top" secondItem="Zjd-Ac-NQ2" secondAttribute="top" constant="20" id="FdR-D0-4IN"/>
+                            <constraint firstItem="PTW-s7-i8d" firstAttribute="bottom" secondItem="Zjd-Ac-NQ2" secondAttribute="bottom" id="KJB-az-58v"/>
                             <constraint firstItem="oBI-7O-bv1" firstAttribute="leading" secondItem="VtD-S1-vnS" secondAttribute="trailing" constant="40" id="Wxi-TV-qHB"/>
+                            <constraint firstItem="PTW-s7-i8d" firstAttribute="top" secondItem="VtD-S1-vnS" secondAttribute="bottom" constant="16" id="g0Q-LY-W89"/>
+                            <constraint firstItem="PTW-s7-i8d" firstAttribute="leading" secondItem="Zjd-Ac-NQ2" secondAttribute="leading" id="hJp-oS-sqI"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oBI-7O-bv1" secondAttribute="trailing" constant="20" symbolic="YES" id="sll-Hp-OuT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zjd-Ac-NQ2"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="PTW-s7-i8d" id="4ny-nr-cuC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWX-J8-KHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="262"/>
+            <point key="canvasLocation" x="652" y="261.31934032983509"/>
         </scene>
     </scenes>
 </document>

@@ -16,6 +16,7 @@ public protocol Streaming: class {
     var call: CallType { get }
     var request: Request { get }
     var dependency: Dependency { get }
+    var isCanceled: Bool { get }
 
     /// Start connection to server. Does not have to call this because it is called internally.
     ///
@@ -37,6 +38,7 @@ open class Stream<R: Request>: Streaming {
     private(set) public var call: CallType
     public let request: Request
     public let dependency: Dependency
+    private(set) public var isCanceled = false
     private let task = CompletionTask<Result<CallResult?>>()
 
     public required init(channel: ChannelType, request: Request, dependency: Dependency) {
@@ -73,12 +75,14 @@ open class Stream<R: Request>: Streaming {
     }
 
     open func cancel() {
+        isCanceled = true
         call.cancel()
     }
 
     open func refresh() {
         call = channel.makeCall(request.method, timeout: request.timeout)
         task.cancel()
+        isCanceled = false
     }
 }
 
@@ -150,6 +154,28 @@ extension Streaming where Request: SendRequest, Message == Request.Message {
 }
 
 extension Streaming where Request: ReceiveRequest {
+    private func retry(_ completion: @escaping (Result<CallResult>) -> Void) {
+        refresh()
+        start { [weak self] result in
+            if case .failure(let error) = result {
+                return completion(.failure(error))
+            }
+
+            do {
+                try self?.call.receiveMessage { callResult in
+                    // retry when result data is nil and result is not failure
+                    if callResult.resultData == nil && callResult.success && self?.isCanceled == false {
+                        self?.retry(completion)
+                    } else {
+                        completion(.success(callResult))
+                    }
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+
     /// For receive message from server
     ///
     /// - Parameter completion: closure called when receive data from server
@@ -157,39 +183,50 @@ extension Streaming where Request: ReceiveRequest {
     @discardableResult
     public func receive(_ completion: @escaping (Result<Request.OutputType?>) -> Void) -> Self {
         start { [weak self] result in
-            guard let me = self else {
-                return
-            }
-
             if case .failure(let error) = result {
                 return completion(.failure(error))
             }
 
-            func receive(call: CallType, request: Request) {
-                do {
-                    try call.receiveMessage { callResult in
-                        guard let data = callResult.resultData else {
-                            if callResult.success {
-                                completion(.success(nil))
-                            } else {
-                                completion(.failure(RPCError.callError(callResult)))
-                            }
-                            return
-                        }
-
-                        if let parsedData = try? request.parse(data: data) {
-                            completion(.success(parsedData))
-                            receive(call: call, request: request)
+            func onCompleted(_ result: Result<CallResult>) {
+                switch result {
+                case .success(let callResult):
+                    guard let data = callResult.resultData else {
+                        if callResult.success {
+                            completion(.success(nil))
                         } else {
-                            completion(.failure(RPCError.invalidMessageReceived))
+                            completion(.failure(RPCError.callError(callResult)))
                         }
+                        return
                     }
-                } catch {
+
+                    if let parsedData = try? self?.request.parse(data: data) {
+                        completion(.success(parsedData))
+                        receive()
+                    } else {
+                        completion(.failure(RPCError.invalidMessageReceived))
+                    }
+
+                case .failure(let error):
                     completion(.failure(error))
                 }
             }
 
-            receive(call: me.call, request: me.request)
+            func receive() {
+                do {
+                    try self?.call.receiveMessage { callResult in
+                        // retry when result data is nil and request is retryable
+                        if callResult.resultData == nil && self?.request.isRetryable == true && self?.isCanceled == false {
+                            self?.retry(onCompleted)
+                        } else {
+                            onCompleted(.success(callResult))
+                        }
+                    }
+                } catch {
+                    onCompleted(.failure(error))
+                }
+            }
+
+            receive()
         }
         return self
     }
@@ -199,23 +236,24 @@ extension Streaming where Request: CloseRequest {
     /// For closing streaming
     ///
     /// - Parameter completion: closure called when completed connection
-    public func close(_ completion: @escaping (Result<Void>) -> Void) {
+    public func close(_ completion: ((Result<Void>) -> Void)? = nil) {
         start { [weak self] result in
             guard let me = self else {
                 return
             }
 
             if case .failure(let error) = result {
-                return completion(.failure(error))
+                completion?(.failure(error))
+                return
             }
 
             do {
                 try me.call.close {
-                    me.refresh()
-                    completion(.success(()))
+                    me.cancel()
+                    completion?(.success(()))
                 }
             } catch {
-                completion(.failure(error))
+                completion?(.failure(error))
             }
         }
     }
@@ -237,11 +275,11 @@ extension Streaming where Request: CloseAndReciveRequest {
 
             do {
                 try me.call.closeAndReceiveMessage { callResult in
+                    me.cancel()
                     guard let data = callResult.resultData else {
                         return completion(.failure(RPCError.callError(callResult)))
                     }
                     if let parsedData = try? me.request.parse(data: data) {
-                        me.refresh()
                         completion(.success(parsedData))
                     } else {
                         completion(.failure(RPCError.invalidMessageReceived))

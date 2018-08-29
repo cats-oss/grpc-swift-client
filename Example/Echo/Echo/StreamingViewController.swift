@@ -99,10 +99,6 @@ class StreamingViewController: UIViewController {
             bidiStream
                 .close { [weak self] in
                     self?.print($0)
-                    self?.bidiStream
-                        .receive {
-                            self?.print($0)
-                        }
                 }
 
         }

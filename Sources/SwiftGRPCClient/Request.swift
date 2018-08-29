@@ -12,7 +12,18 @@ import SwiftGRPC
 
 public protocol UnaryRequest: Request {}
 public protocol SendRequest: Request {}
-public protocol ReceiveRequest: Request {}
+public protocol ReceiveRequest: Request {
+    /// Default is true.
+    /// If it is false, will not retry on any error.
+    /// If it is true, will retry every time it times out or retry once on error.
+    var isRetryable: Bool { get }
+}
+public extension ReceiveRequest {
+    var isRetryable: Bool {
+        return true
+    }
+}
+
 public protocol CloseRequest: Request {}
 public protocol CloseAndReciveRequest: Request {}
 

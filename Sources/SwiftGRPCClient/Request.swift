@@ -64,9 +64,6 @@ public protocol Request {
     associatedtype OutputType
     associatedtype Message
 
-    /// Metadata sent with gRPC messages
-    var metadata: Metadata { get }
-
     /// Streaming Method
     var method: CallMethod { get }
     
@@ -116,10 +113,6 @@ public protocol Request {
 }
 
 public extension Request {
-    var metadata: Metadata {
-        return Metadata()
-    }
-
     var timeout: TimeInterval? {
         return nil
     }

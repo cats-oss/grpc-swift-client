@@ -21,6 +21,6 @@ open class Session: ServiceClientBase, SessionType {
     /// - Parameter request: object conforming to Request protocol
     /// - Returns: object for server streaming
     open func stream<R: Request>(with request: R) -> Stream<R> {
-        return Stream(channel: channel, request: request, dependency: dependency)
+        return Stream(channel: channel, request: request, dependency: dependency, metadata: metadata)
     }
 }

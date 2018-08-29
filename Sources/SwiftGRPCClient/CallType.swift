@@ -11,7 +11,7 @@ import SwiftGRPC
 
 public protocol CallType {
     func cancel()
-    func start<R: Request>(_ request: R, dependency: Dependency, completion: ((CallResult) -> Void)?) throws
+    func start<R: Request>(_ request: R, dependency: Dependency, metadata: Metadata, completion: ((CallResult) -> Void)?) throws
     func sendMessage(data: Data, completion: ((Error?) -> Void)?) throws
     func receiveMessage(completion: @escaping (CallResult) -> Void) throws
     func closeAndReceiveMessage(completion: @escaping (CallResult) -> Void) throws
@@ -19,9 +19,9 @@ public protocol CallType {
 }
 
 extension Call: CallType {
-    public func start<R: Request>(_ request: R, dependency: Dependency, completion: ((CallResult) -> Void)?) throws {
-        var metadata = try request.intercept(metadata: request.metadata.copy())
-        metadata = try dependency.intercept(metadata: metadata)
+    public func start<R: Request>(_ request: R, dependency: Dependency, metadata: Metadata, completion: ((CallResult) -> Void)?) throws {
+        var metadata = try dependency.intercept(metadata: metadata.copy())
+        metadata = try request.intercept(metadata: metadata)
         switch request.style {
         case .unary, .serverStreaming:
             try start(request.style, metadata: metadata, message: request.serialized(), completion: completion)

@@ -38,14 +38,16 @@ open class Stream<R: Request>: Streaming {
     private(set) public var call: CallType
     public let request: Request
     public let dependency: Dependency
+    private let metadata: Metadata
     private(set) public var isCanceled = false
     private let task = CompletionTask<Result<CallResult?>>()
 
-    public required init(channel: ChannelType, request: Request, dependency: Dependency) {
+    public required init(channel: ChannelType, request: Request, dependency: Dependency, metadata: Metadata) {
         self.channel = channel
         self.request = request
         self.call = channel.makeCall(request.method, timeout: request.timeout)
         self.dependency = dependency
+        self.metadata = metadata
     }
 
     public func start(_ completion: @escaping (Result<CallResult?>) -> Void) {
@@ -56,7 +58,7 @@ open class Stream<R: Request>: Streaming {
         do {
             switch request.style {
             case .unary:
-                try call.start(request, dependency: dependency) { response in
+                try call.start(request, dependency: dependency, metadata: metadata) { response in
                     if response.statusCode == .ok {
                         self.task.complete(.success(response))
                     } else {
@@ -65,7 +67,7 @@ open class Stream<R: Request>: Streaming {
                 }
 
             case .serverStreaming, .clientStreaming, .bidiStreaming:
-                try call.start(request, dependency: dependency, completion: nil)
+                try call.start(request, dependency: dependency, metadata: metadata, completion: nil)
                 task.complete(.success(nil))
 
             }

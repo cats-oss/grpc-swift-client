@@ -9,5 +9,5 @@
 import SwiftGRPCClient
 
 extension Session {
-    static let shared = Session(address: "localhost:8082")
+    static let shared = Session(address: "localhost:8082", secure: false)
 }

@@ -23,3 +23,5 @@ public extension Dependency {
         return metadata
     }
 }
+
+public class StreamingDependency: Dependency {}

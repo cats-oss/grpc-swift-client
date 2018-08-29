@@ -16,7 +16,6 @@ public protocol Streaming: class {
     var call: CallType { get }
     var request: Request { get }
     var dependency: Dependency { get }
-    var messageQueue: MessageQueue<Message> { get }
 
     /// Start connection to server. Does not have to call this because it is called internally.
     ///
@@ -32,12 +31,12 @@ public protocol Streaming: class {
 
 open class Stream<R: Request>: Streaming {
     public typealias Request = R
+    public typealias Message = R.Message
 
     private let channel: ChannelType
     private(set) public var call: CallType
     public let request: Request
     public let dependency: Dependency
-    public let messageQueue = MessageQueue<Request.Message>()
     private let task = CompletionTask<Result<CallResult?>>()
 
     public required init(channel: ChannelType, request: Request, dependency: Dependency) {
@@ -115,25 +114,6 @@ extension Streaming where Request: UnaryRequest {
 }
 
 extension Streaming where Request: SendRequest, Message == Request.Message {
-    private func retry(_ message: Message, completion: @escaping (Error?) -> Void) {
-        refresh()
-        start { [weak self] result in
-            guard let me = self else {
-                return
-            }
-
-            if case .failure(let error) = result {
-                return completion(error)
-            }
-
-            do {
-                try me.call.sendMessage(data: me.request.serialized(message), completion: completion)
-            } catch {
-                completion(error)
-            }
-        }
-    }
-
     /// For send message to server
     ///
     /// - Parameters:
@@ -152,31 +132,18 @@ extension Streaming where Request: SendRequest, Message == Request.Message {
                 return
             }
 
-            func sendRecursive(_ message: Message, completion: ((Result<Void>) -> Void)?) {
-                func onCompleted(_ error: Error? = nil) {
+            do {
+                try me.call.sendMessage(data: me.request.serialized(message)) { error in
                     // completion?(operationGroup.success ? nil : CallError.unknown)
                     if let error = error {
                         completion?(.failure(error))
                     } else {
                         completion?(.success(()))
                     }
-                    me.messageQueue.popFirst().map(sendRecursive)
                 }
-
-                do {
-                    try me.call.sendMessage(data: me.request.serialized(message)) { error in
-                        if error == nil {
-                            onCompleted()
-                        } else {
-                            me.retry(message, completion: onCompleted)
-                        }
-                    }
-                } catch {
-                    me.retry(message, completion: onCompleted)
-                }
+            } catch {
+                completion?(.failure(error))
             }
-
-            me.messageQueue.next((message, completion)).map(sendRecursive)
         }
         return self
     }

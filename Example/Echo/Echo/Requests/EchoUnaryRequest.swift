@@ -11,7 +11,7 @@ import Foundation
 struct EchoUnaryRequest: Echo_EchoGetRequest {
     var text = ""
 
-    func buildRequest() -> Echo_EchoRequest {
+    func buildRequest() -> InputType {
         var request = Echo_EchoRequest()
         request.text = text
         return request

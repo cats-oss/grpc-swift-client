@@ -19,19 +19,23 @@ class StreamingViewController: UIViewController {
 
     var unaryStream: SwiftGRPCClient.Stream<EchoUnaryRequest>?
     var clientStream = Session.shared.stream(with: EchoClientRequest())
-    var serverStream: SwiftGRPCClient.Stream<EchoServerRequest>?
+    var serverStream = Session.shared.stream(with: EchoServerRequest())
     var bidiStream = Session.shared.stream(with: EchoBidirectionalRequest())
 
     deinit {
         unaryStream?.cancel()
         clientStream.cancel()
-        serverStream?.cancel()
+        serverStream.cancel()
         bidiStream.cancel()
     }
 
     func print<T>(_ value: T) {
-        DispatchQueue.main.async {
-            self.textView.text = "\(value)\n" + self.textView.text
+        if Thread.isMainThread {
+            textView.text = "\(value)\n" + textView.text
+        } else {
+            DispatchQueue.main.sync {
+                textView.text = "\(value)\n" + textView.text
+            }
         }
     }
 
@@ -59,7 +63,7 @@ class StreamingViewController: UIViewController {
                 }
 
         case .serverStreaming:
-            serverStream = Session.shared.stream(with: EchoServerRequest())
+            serverStream
                 .receive { [weak self] in
                     self?.print($0)
                 }
@@ -87,7 +91,7 @@ class StreamingViewController: UIViewController {
             unaryStream?.cancel()
 
         case .serverStreaming:
-            serverStream?.cancel()
+            serverStream.cancel()
 
         case .clientStreaming:
             clientStream
@@ -102,5 +106,9 @@ class StreamingViewController: UIViewController {
                 }
 
         }
+    }
+
+    @IBAction func cleanButtonDidTap(sender: UIButton) {
+        textView.text = ""
     }
 }

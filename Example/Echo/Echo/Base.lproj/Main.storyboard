@@ -100,6 +100,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cow-OL-NjD">
+                                <rect key="frame" x="186" y="84" width="39" height="30"/>
+                                <state key="normal" title="Clean"/>
+                                <connections>
+                                    <action selector="cleanButtonDidTapWithSender:" destination="iqo-yQ-CgQ" eventType="touchUpInside" id="J4B-g3-7wf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -107,11 +114,13 @@
                             <constraint firstItem="PTW-s7-i8d" firstAttribute="trailing" secondItem="Zjd-Ac-NQ2" secondAttribute="trailing" id="7cP-kw-Ees"/>
                             <constraint firstItem="VtD-S1-vnS" firstAttribute="leading" secondItem="Zjd-Ac-NQ2" secondAttribute="leading" constant="40" id="CWL-Eh-cKD"/>
                             <constraint firstItem="VtD-S1-vnS" firstAttribute="top" secondItem="Zjd-Ac-NQ2" secondAttribute="top" constant="20" id="FdR-D0-4IN"/>
+                            <constraint firstItem="Zjd-Ac-NQ2" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cow-OL-NjD" secondAttribute="trailing" id="GXr-Lq-iWg"/>
+                            <constraint firstItem="cow-OL-NjD" firstAttribute="leading" secondItem="oBI-7O-bv1" secondAttribute="trailing" constant="40" id="K6t-TD-yrm"/>
                             <constraint firstItem="PTW-s7-i8d" firstAttribute="bottom" secondItem="Zjd-Ac-NQ2" secondAttribute="bottom" id="KJB-az-58v"/>
                             <constraint firstItem="oBI-7O-bv1" firstAttribute="leading" secondItem="VtD-S1-vnS" secondAttribute="trailing" constant="40" id="Wxi-TV-qHB"/>
                             <constraint firstItem="PTW-s7-i8d" firstAttribute="top" secondItem="VtD-S1-vnS" secondAttribute="bottom" constant="16" id="g0Q-LY-W89"/>
                             <constraint firstItem="PTW-s7-i8d" firstAttribute="leading" secondItem="Zjd-Ac-NQ2" secondAttribute="leading" id="hJp-oS-sqI"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oBI-7O-bv1" secondAttribute="trailing" constant="20" symbolic="YES" id="sll-Hp-OuT"/>
+                            <constraint firstItem="cow-OL-NjD" firstAttribute="top" secondItem="Zjd-Ac-NQ2" secondAttribute="top" constant="20" id="v7x-yw-QK2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zjd-Ac-NQ2"/>
                     </view>

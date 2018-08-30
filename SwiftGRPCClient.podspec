@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/cats-oss/grpc-swift-client.git', :tag => s.version.to_s }
   s.requires_arc = true
   s.ios.deployment_target       = '9.0'
-  s.tvos.deployment_target      = '9.0'
+  # s.tvos.deployment_target      = '9.0'
   s.osx.deployment_target       = '10.10'
-  s.watchos.deployment_target   = '2.0'
+  # s.watchos.deployment_target   = '2.0'
   s.source_files     = 'Sources/SwiftGRPCClient/*.{h,swift}'
   s.dependency 'SwiftGRPC', '~> 0.5.1'
 end

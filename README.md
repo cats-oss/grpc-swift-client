@@ -7,6 +7,11 @@
 
 Client-side library that depends on [SwiftGRPC](https://github.com/grpc/grpc-swift) which is a library of [gRPC](https://grpc.io/) written in Swift. Basically it is used the function of `Core` part of `SwiftGRPC`, but it is made to make client implementation easier. 
 
+---
+:warning: **WARNING :** If there is the breaking change in SwiftGRPC, this library may not be updatable.
+
+---
+
 The following two modules are included.
 
 #### SwiftGRPCClient
@@ -84,11 +89,12 @@ Then, add `BoringSSL`, `CgRPC`, `SwiftProtobuf`, `SwiftGRPC` and `SwiftGRPCClien
 
 #### Session
 
-Specify the address of the server and create a `Session`. If necessary, you can also use `SSL/TLS` certificate.
+It is inheriting `ServiceClientBase`. See also [ServiceClient](https://github.com/grpc/grpc-swift/blob/0.5.1/Sources/SwiftGRPC/Runtime/ServiceClient.swift) in [grpc/grpc-swift](https://github.com/grpc/grpc-swift/).
+
+It has [Dependency](#dependency) object. It can replace if necessary.
 
 ```swift
-convenience init(address: String, dependency: Dependency? = default)
-convenience init(address: String, certificates: String, dependency: Dependency? = default)
+var dependency: Dependency
 ```
 
 `Session` can create a `Stream` from an instance of `Request`.
@@ -101,7 +107,7 @@ Make one instance of `Session` for the server. If necessary, create a singleton 
 
 ```swift
 extension Session {
-    static let shared = Session(address: "YOUR_SERVER_ADDRESS")
+    static let shared = Session(address: "YOUR_SERVER_ADDRESS", secure: false)
 }
 ```
 
@@ -122,7 +128,7 @@ func data(_ completion: @escaping (Result<Request.OutputType>) -> Void) -> Self
 It is possible to send data continuously to the server. Data can be received only once when connection is completed.
 
 ```swift
-func send(_ message: Message, completion: @escaping (Result<Void>) -> Void) -> Self
+func send(_ message: Message, completion: ((Result<Void>) -> Void)? = default) -> Self
 func closeAndReceive(_ completion: @escaping (Result<Request.OutputType>) -> Void)
 ```
 
@@ -141,7 +147,7 @@ It is possible to send and receive data bi-directionally with the server.
 ```swift
 func send(_ message: Message, completion: @escaping (Result<Void>) -> Void) -> Self
 func receive(_ completion: @escaping (Result<Request.OutputType?>) -> Void) -> Self
-func close(_ completion: @escaping (Result<Void>) -> Void)
+func func close(_ completion: ((Result<Void>) -> Void)? = default)
 ```
 
 - Request
@@ -180,7 +186,7 @@ struct EchoGetRequest: Echo_EchoGetRequest {
 
 #### Dependency
 
-It is possible to monitor all requests by injecting it when creating `Session`. Processing can be interrupted as necessary.
+It is possible to monitor all requests. Processing can be interrupted as necessary.
 
 ```swift
 func intercept(metadata: Metadata) throws -> Metadata

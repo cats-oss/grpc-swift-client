@@ -12,7 +12,6 @@
 		C7AB7872212F173B005D21DC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785C212F173B005D21DC /* Session.swift */; };
 		C7AB7874212F173B005D21DC /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785E212F173B005D21DC /* Result.swift */; };
 		C7AB7875212F173B005D21DC /* CallType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785F212F173B005D21DC /* CallType.swift */; };
-		C7AB7876212F173B005D21DC /* MessageQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7860212F173B005D21DC /* MessageQueue.swift */; };
 		C7AB7877212F173B005D21DC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7861212F173B005D21DC /* Request.swift */; };
 		C7AB7878212F173B005D21DC /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7862212F173B005D21DC /* Dependency.swift */; };
 		C7AB7879212F173B005D21DC /* CallMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7863212F173B005D21DC /* CallMethod.swift */; };
@@ -33,7 +32,6 @@
 		C7AB785D212F173B005D21DC /* SwiftGRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftGRPCClient.h; sourceTree = "<group>"; };
 		C7AB785E212F173B005D21DC /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		C7AB785F212F173B005D21DC /* CallType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallType.swift; sourceTree = "<group>"; };
-		C7AB7860212F173B005D21DC /* MessageQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageQueue.swift; sourceTree = "<group>"; };
 		C7AB7861212F173B005D21DC /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		C7AB7862212F173B005D21DC /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		C7AB7863212F173B005D21DC /* CallMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallMethod.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				C7AB785D212F173B005D21DC /* SwiftGRPCClient.h */,
 				C7AB785E212F173B005D21DC /* Result.swift */,
 				C7AB785F212F173B005D21DC /* CallType.swift */,
-				C7AB7860212F173B005D21DC /* MessageQueue.swift */,
 				C7AB7861212F173B005D21DC /* Request.swift */,
 				C7AB7862212F173B005D21DC /* Dependency.swift */,
 				C7AB7863212F173B005D21DC /* CallMethod.swift */,
@@ -205,7 +202,6 @@
 				C7AB7871212F173B005D21DC /* Stream.swift in Sources */,
 				C7AB7878212F173B005D21DC /* Dependency.swift in Sources */,
 				C7AB7875212F173B005D21DC /* CallType.swift in Sources */,
-				C7AB7876212F173B005D21DC /* MessageQueue.swift in Sources */,
 				C7AB7877212F173B005D21DC /* Request.swift in Sources */,
 				C7AB7879212F173B005D21DC /* CallMethod.swift in Sources */,
 				C7AB787A212F173B005D21DC /* ChannelType.swift in Sources */,

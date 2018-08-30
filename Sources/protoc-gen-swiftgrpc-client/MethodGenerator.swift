@@ -66,7 +66,7 @@ extension MethodGenerator {
 
 private extension MethodDescriptor {
     enum StreamingType: String {
-        case unaryStreaming
+        case unary
         case clientStreaming
         case serverStreaming
         case bidirectionalStreaming
@@ -88,7 +88,7 @@ private extension MethodDescriptor {
             if proto.serverStreaming {
                 return .serverStreaming
             } else {
-                return .unaryStreaming
+                return .unary
             }
         }
     }

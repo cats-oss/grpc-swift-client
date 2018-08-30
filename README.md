@@ -115,7 +115,7 @@ extension Session {
 
 There is a way to access the resources of the server. Depending on the type of `Request` used to create `Stream`, the available connection method changes.
 
-- UnaryStreamingRequest
+- UnaryRequest
 
 Unary connection is possible.
 
@@ -271,7 +271,7 @@ protocol _Echo_EchoGetRequest {
     typealias OutputType = Echo_EchoResponse
 }
 
-protocol Echo_EchoGetRequest: _Echo_EchoGetRequest, UnaryStreamingRequest {}
+protocol Echo_EchoGetRequest: _Echo_EchoGetRequest, UnaryRequest {}
 
 extension Echo_EchoGetRequest {
     var method: CallMethod {

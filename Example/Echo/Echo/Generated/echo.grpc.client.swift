@@ -23,7 +23,7 @@ protocol _Echo_EchoGetRequest {
   typealias OutputType = Echo_EchoResponse
 }
 
-protocol Echo_EchoGetRequest: _Echo_EchoGetRequest, UnaryStreamingRequest {}
+protocol Echo_EchoGetRequest: _Echo_EchoGetRequest, UnaryRequest {}
 
 extension Echo_EchoGetRequest {
   var method: CallMethod {

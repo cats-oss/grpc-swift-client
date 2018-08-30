@@ -24,7 +24,6 @@ struct Echo_EchoRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// The text of a message to be echoed.
   var text: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -37,7 +36,6 @@ struct Echo_EchoResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// The text of an echo response.
   var text: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()

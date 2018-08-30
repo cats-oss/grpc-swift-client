@@ -10,7 +10,14 @@ import Foundation
 import SwiftProtobuf
 import SwiftGRPC
 
+/// Unary connection is possible.
 public protocol UnaryRequest: Request {}
+extension UnaryRequest {
+    public var style: CallStyle {
+        return .unary
+    }
+}
+
 public protocol SendRequest: Request {}
 public protocol ReceiveRequest: Request {
     /// Default is true.
@@ -26,14 +33,6 @@ public extension ReceiveRequest {
 
 public protocol CloseRequest: Request {}
 public protocol CloseAndReciveRequest: Request {}
-
-/// Unary connection is possible.
-public protocol UnaryStreamingRequest: UnaryRequest {}
-extension UnaryStreamingRequest {
-    public var style: CallStyle {
-        return .unary
-    }
-}
 
 /// It is possible to receive data continuously from the server.
 public protocol ServerStreamingRequest: ReceiveRequest {}

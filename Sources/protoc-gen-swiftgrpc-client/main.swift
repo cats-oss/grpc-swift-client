@@ -78,7 +78,7 @@ struct GeneratorPlugin {
     }
 
     private func showVersion() {
-        print("\(CommandLine.programName) 0.1.0")
+        print("\(CommandLine.programName) 0.1.1")
     }
 
     private func generateFromStdin() -> Int32 {

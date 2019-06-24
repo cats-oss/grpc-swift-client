@@ -1,3 +1,8 @@
+gen:
+	swift build --product protoc-gen-swiftgrpc-client -c release
+	cp .build/release/protoc-gen-swift .
+	cp .build/release/protoc-gen-swiftgrpc-client .
+
 all:
 	swift build
 	cp .build/debug/protoc-gen-swift .

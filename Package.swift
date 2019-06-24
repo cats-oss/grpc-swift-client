@@ -9,8 +9,8 @@ let package = Package(
         .library(name: "SwiftGRPCClient", targets: ["SwiftGRPCClient"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.0.3")),
-        .package(url: "https://github.com/grpc/grpc-swift.git", from: "0.5.1")
+        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.5.0")),
+        .package(url: "https://github.com/grpc/grpc-swift.git", from: "0.9.0")
     ],
     targets: [
         .target(name: "SwiftGRPCClient",

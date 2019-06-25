@@ -7,40 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C7AB7870212F173B005D21DC /* CompletionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785A212F173B005D21DC /* CompletionTask.swift */; };
-		C7AB7871212F173B005D21DC /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785B212F173B005D21DC /* Stream.swift */; };
-		C7AB7872212F173B005D21DC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785C212F173B005D21DC /* Session.swift */; };
-		C7AB7874212F173B005D21DC /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785E212F173B005D21DC /* Result.swift */; };
-		C7AB7875212F173B005D21DC /* CallType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB785F212F173B005D21DC /* CallType.swift */; };
-		C7AB7877212F173B005D21DC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7861212F173B005D21DC /* Request.swift */; };
-		C7AB7878212F173B005D21DC /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7862212F173B005D21DC /* Dependency.swift */; };
-		C7AB7879212F173B005D21DC /* CallMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7863212F173B005D21DC /* CallMethod.swift */; };
-		C7AB787A212F173B005D21DC /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB7864212F173B005D21DC /* ChannelType.swift */; };
-		C7AB7889212F192B005D21DC /* SwiftGRPCClient-Carthage.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C7AB7888212F192B005D21DC /* SwiftGRPCClient-Carthage.xcconfig */; };
 		C7AB7890212F196B005D21DC /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788C212F196B005D21DC /* BoringSSL.framework */; };
 		C7AB7891212F196B005D21DC /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788D212F196B005D21DC /* CgRPC.framework */; };
 		C7AB7892212F196B005D21DC /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788E212F196B005D21DC /* SwiftGRPC.framework */; };
 		C7AB7893212F196B005D21DC /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788F212F196B005D21DC /* SwiftProtobuf.framework */; };
-		C7AB7895212F1A5E005D21DC /* SwiftGRPCClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C7AB785D212F173B005D21DC /* SwiftGRPCClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7CF0E6822C21DF800E36BFF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E5D22C21DF700E36BFF /* Request.swift */; };
+		C7CF0E6922C21DF800E36BFF /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E5E22C21DF800E36BFF /* Session.swift */; };
+		C7CF0E6A22C21DF800E36BFF /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E5F22C21DF800E36BFF /* Stream.swift */; };
+		C7CF0E6B22C21DF800E36BFF /* StreamingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6022C21DF800E36BFF /* StreamingError.swift */; };
+		C7CF0E6C22C21DF800E36BFF /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6122C21DF800E36BFF /* ChannelType.swift */; };
+		C7CF0E6D22C21DF800E36BFF /* CallType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6222C21DF800E36BFF /* CallType.swift */; };
+		C7CF0E6F22C21DF800E36BFF /* CompletionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6422C21DF800E36BFF /* CompletionTask.swift */; };
+		C7CF0E7022C21DF800E36BFF /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6522C21DF800E36BFF /* Dependency.swift */; };
+		C7CF0E7122C21DF800E36BFF /* SwiftGRPCClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C7CF0E6622C21DF800E36BFF /* SwiftGRPCClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7CF0E7222C21DF800E36BFF /* CallMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6722C21DF800E36BFF /* CallMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C7AB784F212F16CB005D21DC /* SwiftGRPCClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGRPCClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7AB785A212F173B005D21DC /* CompletionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionTask.swift; sourceTree = "<group>"; };
-		C7AB785B212F173B005D21DC /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
-		C7AB785C212F173B005D21DC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		C7AB785D212F173B005D21DC /* SwiftGRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftGRPCClient.h; sourceTree = "<group>"; };
-		C7AB785E212F173B005D21DC /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		C7AB785F212F173B005D21DC /* CallType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallType.swift; sourceTree = "<group>"; };
-		C7AB7861212F173B005D21DC /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		C7AB7862212F173B005D21DC /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
-		C7AB7863212F173B005D21DC /* CallMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallMethod.swift; sourceTree = "<group>"; };
-		C7AB7864212F173B005D21DC /* ChannelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
 		C7AB7888212F192B005D21DC /* SwiftGRPCClient-Carthage.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "SwiftGRPCClient-Carthage.xcconfig"; sourceTree = "<group>"; };
 		C7AB788C212F196B005D21DC /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/iOS/BoringSSL.framework; sourceTree = "<group>"; };
 		C7AB788D212F196B005D21DC /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = Carthage/Build/iOS/CgRPC.framework; sourceTree = "<group>"; };
 		C7AB788E212F196B005D21DC /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = Carthage/Build/iOS/SwiftGRPC.framework; sourceTree = "<group>"; };
 		C7AB788F212F196B005D21DC /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
+		C7CF0E5D22C21DF700E36BFF /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		C7CF0E5E22C21DF800E36BFF /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		C7CF0E5F22C21DF800E36BFF /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		C7CF0E6022C21DF800E36BFF /* StreamingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamingError.swift; sourceTree = "<group>"; };
+		C7CF0E6122C21DF800E36BFF /* ChannelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
+		C7CF0E6222C21DF800E36BFF /* CallType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallType.swift; sourceTree = "<group>"; };
+		C7CF0E6322C21DF800E36BFF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7CF0E6422C21DF800E36BFF /* CompletionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionTask.swift; sourceTree = "<group>"; };
+		C7CF0E6522C21DF800E36BFF /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
+		C7CF0E6622C21DF800E36BFF /* SwiftGRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftGRPCClient.h; sourceTree = "<group>"; };
+		C7CF0E6722C21DF800E36BFF /* CallMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,16 +87,17 @@
 		C7AB7859212F173B005D21DC /* SwiftGRPCClient */ = {
 			isa = PBXGroup;
 			children = (
-				C7AB785A212F173B005D21DC /* CompletionTask.swift */,
-				C7AB785B212F173B005D21DC /* Stream.swift */,
-				C7AB785C212F173B005D21DC /* Session.swift */,
-				C7AB785D212F173B005D21DC /* SwiftGRPCClient.h */,
-				C7AB785E212F173B005D21DC /* Result.swift */,
-				C7AB785F212F173B005D21DC /* CallType.swift */,
-				C7AB7861212F173B005D21DC /* Request.swift */,
-				C7AB7862212F173B005D21DC /* Dependency.swift */,
-				C7AB7863212F173B005D21DC /* CallMethod.swift */,
-				C7AB7864212F173B005D21DC /* ChannelType.swift */,
+				C7CF0E6722C21DF800E36BFF /* CallMethod.swift */,
+				C7CF0E6222C21DF800E36BFF /* CallType.swift */,
+				C7CF0E6122C21DF800E36BFF /* ChannelType.swift */,
+				C7CF0E6422C21DF800E36BFF /* CompletionTask.swift */,
+				C7CF0E6522C21DF800E36BFF /* Dependency.swift */,
+				C7CF0E6322C21DF800E36BFF /* Info.plist */,
+				C7CF0E5D22C21DF700E36BFF /* Request.swift */,
+				C7CF0E5E22C21DF800E36BFF /* Session.swift */,
+				C7CF0E5F22C21DF800E36BFF /* Stream.swift */,
+				C7CF0E6022C21DF800E36BFF /* StreamingError.swift */,
+				C7CF0E6622C21DF800E36BFF /* SwiftGRPCClient.h */,
 			);
 			path = SwiftGRPCClient;
 			sourceTree = "<group>";
@@ -127,7 +128,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7AB7895212F1A5E005D21DC /* SwiftGRPCClient.h in Headers */,
+				C7CF0E7122C21DF800E36BFF /* SwiftGRPCClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +163,7 @@
 				TargetAttributes = {
 					C7AB784E212F16CB005D21DC = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -187,7 +189,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7AB7889212F192B005D21DC /* SwiftGRPCClient-Carthage.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,15 +199,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7AB7870212F173B005D21DC /* CompletionTask.swift in Sources */,
-				C7AB7871212F173B005D21DC /* Stream.swift in Sources */,
-				C7AB7878212F173B005D21DC /* Dependency.swift in Sources */,
-				C7AB7875212F173B005D21DC /* CallType.swift in Sources */,
-				C7AB7877212F173B005D21DC /* Request.swift in Sources */,
-				C7AB7879212F173B005D21DC /* CallMethod.swift in Sources */,
-				C7AB787A212F173B005D21DC /* ChannelType.swift in Sources */,
-				C7AB7874212F173B005D21DC /* Result.swift in Sources */,
-				C7AB7872212F173B005D21DC /* Session.swift in Sources */,
+				C7CF0E6F22C21DF800E36BFF /* CompletionTask.swift in Sources */,
+				C7CF0E6922C21DF800E36BFF /* Session.swift in Sources */,
+				C7CF0E7022C21DF800E36BFF /* Dependency.swift in Sources */,
+				C7CF0E6D22C21DF800E36BFF /* CallType.swift in Sources */,
+				C7CF0E6A22C21DF800E36BFF /* Stream.swift in Sources */,
+				C7CF0E6C22C21DF800E36BFF /* ChannelType.swift in Sources */,
+				C7CF0E7222C21DF800E36BFF /* CallMethod.swift in Sources */,
+				C7CF0E6822C21DF800E36BFF /* Request.swift in Sources */,
+				C7CF0E6B22C21DF800E36BFF /* StreamingError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

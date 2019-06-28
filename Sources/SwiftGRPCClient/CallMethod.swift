@@ -10,13 +10,13 @@ import Foundation
 
 public protocol CallMethod {
     static var service: String { get }
-    var host: String { get }
+    var host: String? { get }
     var path: String { get }
 }
 
 public extension CallMethod where Self: RawRepresentable {
-    var host: String {
-        return ""
+    var host: String? {
+        return nil
     }
 
     var path: String {

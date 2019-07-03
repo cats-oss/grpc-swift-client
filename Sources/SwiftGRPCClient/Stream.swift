@@ -191,7 +191,7 @@ extension Streaming where Request: ReceiveRequest {
     /// - Parameter completion: closure called when receive data from server
     /// - Returns: Streaming object
     @discardableResult
-    public func receive(_ completion: @escaping (Result<Request.OutputType?, StreamingError>) -> Void) -> Self {
+    public func receive(_ completion: @escaping (Result<Request.OutputType, StreamingError>) -> Void) -> Self {
         start { [weak self] result in
             if case .failure(let error) = result {
                 return completion(.failure(error))
@@ -202,7 +202,7 @@ extension Streaming where Request: ReceiveRequest {
                 case .success(let callResult):
                     guard let data = callResult.resultData else {
                         if callResult.success {
-                            completion(.success(nil))
+                            completion(.failure(.noMessageReceived))
                         } else {
                             completion(.failure(.responseError(callResult)))
                         }

@@ -104,11 +104,12 @@ extension Streaming where Request: UnaryRequest {
     @discardableResult
     public func data(_ completion: @escaping (Result<Request.OutputType, StreamingError>) -> Void) -> Self {
         start { [weak self] result in
+            guard let strongSelf = self else { return }
             do {
                 guard let data = try result.get()?.resultData else {
                     throw StreamingError.noMessageReceived
                 }
-                guard let parsedData = try? self?.request.parse(data: data) else {
+                guard let parsedData = try? strongSelf.request.parse(data: data) else {
                     throw StreamingError.invalidMessageReceived
                 }
 
@@ -174,12 +175,13 @@ extension Streaming where Request: ReceiveRequest {
     @discardableResult
     public func receive(_ completion: @escaping (Result<Request.OutputType, StreamingError>) -> Void) -> Self {
         start { [weak self] result in
+            guard let strongSelf = self else { return }
             func onCompleted(_ result: Result<CallResult, StreamingError>) {
                 do {
                     guard let data = try result.get().resultData else {
                         throw StreamingError.noMessageReceived
                     }
-                    guard let parsedData = try? self?.request.parse(data: data) else {
+                    guard let parsedData = try? strongSelf.request.parse(data: data) else {
                         throw StreamingError.invalidMessageReceived
                     }
 
@@ -240,6 +242,7 @@ extension Streaming where Request: CloseAndReciveRequest {
     /// - Parameter completion: closure called when receive data from server
     public func closeAndReceive(_ completion: @escaping (Result<Request.OutputType, StreamingError>) -> Void) {
         start { [weak self] result in
+            guard let strongSelf = self else {  return }
             do {
                 // check start error
                 _ = try result.get()
@@ -249,7 +252,7 @@ extension Streaming where Request: CloseAndReciveRequest {
                         guard let data = result.resultData else {
                             throw StreamingError.responseError(result)
                         }
-                        guard let parsedData = try? self?.request.parse(data: data) else {
+                        guard let parsedData = try? strongSelf.request.parse(data: data) else {
                             throw StreamingError.invalidMessageReceived
                         }
 

@@ -23,7 +23,7 @@ final class MethodGenerator {
             packageServiceName = namer.typePrefix(forFile: method.service.file) + method.service.name
             packageServiceMethodName = packageServiceName + method.name
         } else {
-            packageServiceName = method.service.name + method.name
+            packageServiceName = method.service.name
             packageServiceMethodName = method.service.name + method.name
         }
     }

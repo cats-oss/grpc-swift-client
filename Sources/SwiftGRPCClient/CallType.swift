@@ -9,7 +9,7 @@
 import Foundation
 import SwiftGRPC
 
-public protocol CallType {
+public protocol CallType: class {
     func cancel()
     func start<R: Request>(_ request: R, dependency: Dependency, metadata: Metadata, completion: ((CallResult) -> Void)?) throws
     func sendMessage(data: Data, completion: ((Error?) -> Void)?) throws

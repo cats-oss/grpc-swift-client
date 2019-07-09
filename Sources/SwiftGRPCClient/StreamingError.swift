@@ -15,6 +15,7 @@ public enum StreamingError: Error {
     case callError(CallError)
     case unknownError(Error)
     case noMessageReceived
+    case notConnectedToInternet
 
     init(_ error: Error) {
         switch error {

@@ -13,24 +13,17 @@ import SwiftGRPC
 /// Unary connection is possible.
 public protocol UnaryRequest: Request {}
 extension UnaryRequest {
+    public var timeout: TimeInterval {
+        return 20
+    }
+
     public var style: CallStyle {
         return .unary
     }
 }
 
 public protocol SendRequest: Request {}
-public protocol ReceiveRequest: Request {
-    /// Default is true.
-    /// If it is false, will not retry on any error.
-    /// If it is true, will retry every time it times out or retry once on error.
-    var isRetryable: Bool { get }
-}
-public extension ReceiveRequest {
-    var isRetryable: Bool {
-        return true
-    }
-}
-
+public protocol ReceiveRequest: Request {}
 public protocol CloseRequest: Request {}
 public protocol CloseAndReciveRequest: Request {}
 
@@ -69,8 +62,8 @@ public protocol Request {
     /// Streaming type
     var style: CallStyle { get }
 
-    /// A timeout value in seconds. If nil, used timeout value of Session as default.
-    var timeout: TimeInterval? { get }
+    /// A timeout value in seconds. Default is 1 day (60 * 60 * 24 seconds).
+    var timeout: TimeInterval { get }
 
     /// Create a Request object for sending to server finally
     ///
@@ -112,8 +105,8 @@ public protocol Request {
 }
 
 public extension Request {
-    var timeout: TimeInterval? {
-        return nil
+    var timeout: TimeInterval {
+        return 60 * 60 * 24
     }
 
     func intercept(metadata: Metadata) throws -> Metadata {

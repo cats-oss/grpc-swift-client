@@ -7,40 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C73F5BB022D49E9D0022566F /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BA322D49E9D0022566F /* NetworkMonitor.swift */; };
+		C73F5BB122D49E9D0022566F /* CallMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BA422D49E9D0022566F /* CallMethod.swift */; };
+		C73F5BB222D49E9D0022566F /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BA522D49E9D0022566F /* Stream.swift */; };
+		C73F5BB322D49E9D0022566F /* CallProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BA622D49E9D0022566F /* CallProtocol.swift */; };
+		C73F5BB422D49E9D0022566F /* CompletionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BA722D49E9D0022566F /* CompletionTask.swift */; };
+		C73F5BB522D49E9D0022566F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BA822D49E9D0022566F /* Request.swift */; };
+		C73F5BB622D49E9D0022566F /* StreamingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BA922D49E9D0022566F /* StreamingError.swift */; };
+		C73F5BB822D49E9D0022566F /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BAB22D49E9D0022566F /* MessageType.swift */; };
+		C73F5BB922D49E9D0022566F /* SwiftGRPCClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C73F5BAC22D49E9D0022566F /* SwiftGRPCClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C73F5BBA22D49E9D0022566F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BAD22D49E9D0022566F /* Session.swift */; };
+		C73F5BBB22D49E9D0022566F /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BAE22D49E9D0022566F /* Dependency.swift */; };
+		C73F5BBC22D49E9D0022566F /* ChannelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BAF22D49E9D0022566F /* ChannelProtocol.swift */; };
 		C7AB7890212F196B005D21DC /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788C212F196B005D21DC /* BoringSSL.framework */; };
 		C7AB7891212F196B005D21DC /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788D212F196B005D21DC /* CgRPC.framework */; };
 		C7AB7892212F196B005D21DC /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788E212F196B005D21DC /* SwiftGRPC.framework */; };
 		C7AB7893212F196B005D21DC /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788F212F196B005D21DC /* SwiftProtobuf.framework */; };
-		C7CF0E6822C21DF800E36BFF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E5D22C21DF700E36BFF /* Request.swift */; };
-		C7CF0E6922C21DF800E36BFF /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E5E22C21DF800E36BFF /* Session.swift */; };
-		C7CF0E6A22C21DF800E36BFF /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E5F22C21DF800E36BFF /* Stream.swift */; };
-		C7CF0E6B22C21DF800E36BFF /* StreamingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6022C21DF800E36BFF /* StreamingError.swift */; };
-		C7CF0E6C22C21DF800E36BFF /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6122C21DF800E36BFF /* ChannelType.swift */; };
-		C7CF0E6D22C21DF800E36BFF /* CallType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6222C21DF800E36BFF /* CallType.swift */; };
-		C7CF0E6F22C21DF800E36BFF /* CompletionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6422C21DF800E36BFF /* CompletionTask.swift */; };
-		C7CF0E7022C21DF800E36BFF /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6522C21DF800E36BFF /* Dependency.swift */; };
-		C7CF0E7122C21DF800E36BFF /* SwiftGRPCClient.h in Headers */ = {isa = PBXBuildFile; fileRef = C7CF0E6622C21DF800E36BFF /* SwiftGRPCClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C7CF0E7222C21DF800E36BFF /* CallMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CF0E6722C21DF800E36BFF /* CallMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C73F5BA322D49E9D0022566F /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		C73F5BA422D49E9D0022566F /* CallMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallMethod.swift; sourceTree = "<group>"; };
+		C73F5BA522D49E9D0022566F /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		C73F5BA622D49E9D0022566F /* CallProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallProtocol.swift; sourceTree = "<group>"; };
+		C73F5BA722D49E9D0022566F /* CompletionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionTask.swift; sourceTree = "<group>"; };
+		C73F5BA822D49E9D0022566F /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		C73F5BA922D49E9D0022566F /* StreamingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamingError.swift; sourceTree = "<group>"; };
+		C73F5BAA22D49E9D0022566F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C73F5BAB22D49E9D0022566F /* MessageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		C73F5BAC22D49E9D0022566F /* SwiftGRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftGRPCClient.h; sourceTree = "<group>"; };
+		C73F5BAD22D49E9D0022566F /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		C73F5BAE22D49E9D0022566F /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
+		C73F5BAF22D49E9D0022566F /* ChannelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelProtocol.swift; sourceTree = "<group>"; };
 		C7AB784F212F16CB005D21DC /* SwiftGRPCClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGRPCClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AB7888212F192B005D21DC /* SwiftGRPCClient-Carthage.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "SwiftGRPCClient-Carthage.xcconfig"; sourceTree = "<group>"; };
 		C7AB788C212F196B005D21DC /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/iOS/BoringSSL.framework; sourceTree = "<group>"; };
 		C7AB788D212F196B005D21DC /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = Carthage/Build/iOS/CgRPC.framework; sourceTree = "<group>"; };
 		C7AB788E212F196B005D21DC /* SwiftGRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftGRPC.framework; path = Carthage/Build/iOS/SwiftGRPC.framework; sourceTree = "<group>"; };
 		C7AB788F212F196B005D21DC /* SwiftProtobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftProtobuf.framework; path = Carthage/Build/iOS/SwiftProtobuf.framework; sourceTree = "<group>"; };
-		C7CF0E5D22C21DF700E36BFF /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		C7CF0E5E22C21DF800E36BFF /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		C7CF0E5F22C21DF800E36BFF /* Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
-		C7CF0E6022C21DF800E36BFF /* StreamingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamingError.swift; sourceTree = "<group>"; };
-		C7CF0E6122C21DF800E36BFF /* ChannelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
-		C7CF0E6222C21DF800E36BFF /* CallType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallType.swift; sourceTree = "<group>"; };
-		C7CF0E6322C21DF800E36BFF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7CF0E6422C21DF800E36BFF /* CompletionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionTask.swift; sourceTree = "<group>"; };
-		C7CF0E6522C21DF800E36BFF /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
-		C7CF0E6622C21DF800E36BFF /* SwiftGRPCClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftGRPCClient.h; sourceTree = "<group>"; };
-		C7CF0E6722C21DF800E36BFF /* CallMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,17 +91,19 @@
 		C7AB7859212F173B005D21DC /* SwiftGRPCClient */ = {
 			isa = PBXGroup;
 			children = (
-				C7CF0E6722C21DF800E36BFF /* CallMethod.swift */,
-				C7CF0E6222C21DF800E36BFF /* CallType.swift */,
-				C7CF0E6122C21DF800E36BFF /* ChannelType.swift */,
-				C7CF0E6422C21DF800E36BFF /* CompletionTask.swift */,
-				C7CF0E6522C21DF800E36BFF /* Dependency.swift */,
-				C7CF0E6322C21DF800E36BFF /* Info.plist */,
-				C7CF0E5D22C21DF700E36BFF /* Request.swift */,
-				C7CF0E5E22C21DF800E36BFF /* Session.swift */,
-				C7CF0E5F22C21DF800E36BFF /* Stream.swift */,
-				C7CF0E6022C21DF800E36BFF /* StreamingError.swift */,
-				C7CF0E6622C21DF800E36BFF /* SwiftGRPCClient.h */,
+				C73F5BA422D49E9D0022566F /* CallMethod.swift */,
+				C73F5BA622D49E9D0022566F /* CallProtocol.swift */,
+				C73F5BAF22D49E9D0022566F /* ChannelProtocol.swift */,
+				C73F5BA722D49E9D0022566F /* CompletionTask.swift */,
+				C73F5BAE22D49E9D0022566F /* Dependency.swift */,
+				C73F5BAA22D49E9D0022566F /* Info.plist */,
+				C73F5BAB22D49E9D0022566F /* MessageType.swift */,
+				C73F5BA322D49E9D0022566F /* NetworkMonitor.swift */,
+				C73F5BA822D49E9D0022566F /* Request.swift */,
+				C73F5BAD22D49E9D0022566F /* Session.swift */,
+				C73F5BA522D49E9D0022566F /* Stream.swift */,
+				C73F5BA922D49E9D0022566F /* StreamingError.swift */,
+				C73F5BAC22D49E9D0022566F /* SwiftGRPCClient.h */,
 			);
 			path = SwiftGRPCClient;
 			sourceTree = "<group>";
@@ -128,7 +134,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7CF0E7122C21DF800E36BFF /* SwiftGRPCClient.h in Headers */,
+				C73F5BB922D49E9D0022566F /* SwiftGRPCClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,15 +205,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7CF0E6F22C21DF800E36BFF /* CompletionTask.swift in Sources */,
-				C7CF0E6922C21DF800E36BFF /* Session.swift in Sources */,
-				C7CF0E7022C21DF800E36BFF /* Dependency.swift in Sources */,
-				C7CF0E6D22C21DF800E36BFF /* CallType.swift in Sources */,
-				C7CF0E6A22C21DF800E36BFF /* Stream.swift in Sources */,
-				C7CF0E6C22C21DF800E36BFF /* ChannelType.swift in Sources */,
-				C7CF0E7222C21DF800E36BFF /* CallMethod.swift in Sources */,
-				C7CF0E6822C21DF800E36BFF /* Request.swift in Sources */,
-				C7CF0E6B22C21DF800E36BFF /* StreamingError.swift in Sources */,
+				C73F5BB122D49E9D0022566F /* CallMethod.swift in Sources */,
+				C73F5BB522D49E9D0022566F /* Request.swift in Sources */,
+				C73F5BB622D49E9D0022566F /* StreamingError.swift in Sources */,
+				C73F5BBC22D49E9D0022566F /* ChannelProtocol.swift in Sources */,
+				C73F5BB822D49E9D0022566F /* MessageType.swift in Sources */,
+				C73F5BB222D49E9D0022566F /* Stream.swift in Sources */,
+				C73F5BB022D49E9D0022566F /* NetworkMonitor.swift in Sources */,
+				C73F5BBB22D49E9D0022566F /* Dependency.swift in Sources */,
+				C73F5BB422D49E9D0022566F /* CompletionTask.swift in Sources */,
+				C73F5BB322D49E9D0022566F /* CallProtocol.swift in Sources */,
+				C73F5BBA22D49E9D0022566F /* Session.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +311,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -378,7 +386,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

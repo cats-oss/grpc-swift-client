@@ -1,5 +1,5 @@
 //
-//  CallType.swift
+//  CallProtocol.swift
 //  SwiftGRPCClient
 //
 //  Created by Kyohei Ito on 2017/10/28.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftGRPC
 
-public protocol CallType: class {
+public protocol CallProtocol: class {
     func cancel()
     func start<R: Request>(_ request: R, dependency: Dependency, metadata: Metadata, completion: ((CallResult) -> Void)?) throws
     func sendMessage(data: Data, completion: ((Error?) -> Void)?) throws
@@ -18,7 +18,7 @@ public protocol CallType: class {
     func close(completion: (() -> Void)?) throws
 }
 
-extension Call: CallType {
+extension Call: CallProtocol {
     public func start<R: Request>(_ request: R, dependency: Dependency, metadata: Metadata, completion: ((CallResult) -> Void)?) throws {
         var metadata = try dependency.intercept(metadata: metadata.copy())
         metadata = try request.intercept(metadata: metadata)

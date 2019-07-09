@@ -13,7 +13,7 @@ public protocol Streaming: class {
     associatedtype Request
     associatedtype Message
 
-    var call: Result<CallType, StreamingError> { get }
+    var call: Result<CallProtocol, StreamingError> { get }
     var request: Request { get }
     var dependency: Dependency { get }
 
@@ -33,8 +33,8 @@ open class Stream<R: Request>: Streaming {
     public typealias Request = R
     public typealias Message = R.Message
 
-    private let channel: ChannelType
-    private(set) public var call: Result<CallType, StreamingError>
+    private let channel: ChannelProtocol
+    private(set) public var call: Result<CallProtocol, StreamingError>
     public let request: Request
     public let dependency: Dependency
     private let metadata: Metadata
@@ -45,7 +45,7 @@ open class Stream<R: Request>: Streaming {
     private var retryCount = 5
 
     public required init(
-        channel: ChannelType,
+        channel: ChannelProtocol,
         request: Request,
         dependency: Dependency,
         metadata: Metadata,

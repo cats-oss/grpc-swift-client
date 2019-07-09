@@ -62,8 +62,8 @@ session.stream(with: GetUserRequest(id: "user_id"))
 
 ### Requirements
 
-- Swift 4.1
-- SwiftGRPC 0.5.1
+- Swift 5.0
+- SwiftGRPC 0.9.1
 
 ### How to Install
 

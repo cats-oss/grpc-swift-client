@@ -7,7 +7,7 @@
 //
 IPHONEOS_DEPLOYMENT_TARGET = 9.0
 MACOSX_DEPLOYMENT_TARGET = 10.10
-TVOS_DEPLOYMENT_TARGET = 9.0
+TVOS_DEPLOYMENT_TARGET = 10.0
 WATCHOS_DEPLOYMENT_TARGET = 2.0
 
 SUPPORTED_PLATFORMS = macosx iphoneos iphonesimulator watchos watchsimulator appletvos appletvsimulator

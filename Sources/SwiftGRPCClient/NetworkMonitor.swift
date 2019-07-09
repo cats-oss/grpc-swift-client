@@ -2,7 +2,9 @@
 // https://github.com/grpc/grpc-swift
 // BEGIN grpc-swift derivation
 
+#if os(iOS)
 import CoreTelephony
+#endif
 import Dispatch
 import SystemConfiguration
 
@@ -18,14 +20,18 @@ final class NetworkMonitor {
     private let reachability: SCNetworkReachability
     private let notification: NotificationCenter
 
+    #if os(iOS)
     /// Instance of network info being used for obtaining cellular technology names.
     let cellularInfo = CTTelephonyNetworkInfo()
-    /// Whether the network is currently reachable. Backed by `SCNetworkReachability`.
-    private(set) var isReachable: Bool
-    /// Whether the device is currently using wifi (versus cellular).
-    private(set) var isUsingWifi: Bool
     /// Name of the cellular technology being used (e.g., `CTRadioAccessTechnologyLTE`).
     private(set) var cellularName: String?
+    #endif
+    #if os(iOS) || os(tvOS)
+    /// Whether the device is currently using wifi (versus cellular).
+    private(set) var isUsingWifi: Bool
+    #endif
+    /// Whether the network is currently reachable. Backed by `SCNetworkReachability`.
+    private(set) var isReachable: Bool
     /// Network state handler.
     var stateHandler: ((State) -> Void)?
 
@@ -66,12 +72,15 @@ final class NetworkMonitor {
 
         var flags = SCNetworkReachabilityFlags()
         SCNetworkReachabilityGetFlags(reachability, &flags)
-        self.isUsingWifi = !flags.contains(.isWWAN)
         self.isReachable = flags.contains(.reachable)
+        #if os(iOS) || os(tvOS)
+        self.isUsingWifi = !flags.contains(.isWWAN)
+        #endif
+        #if os(iOS)
         self.cellularName = cellularInfo.currentRadioAccessTechnology
-
-        startMonitoringReachability()
         startMonitoringCellular()
+        #endif
+        startMonitoringReachability()
     }
 
     deinit {
@@ -81,7 +90,9 @@ final class NetworkMonitor {
         notification.removeObserver(self)
     }
 
+    #if os(iOS)
     // MARK: - Cellular
+
     private func startMonitoringCellular() {
         notification.addObserver(
             self,
@@ -104,6 +115,7 @@ final class NetworkMonitor {
             }
         }
     }
+    #endif
 
     // MARK: - Reachability
 
@@ -123,21 +135,9 @@ final class NetworkMonitor {
 
     private func reachabilityDidChange(with flags: SCNetworkReachabilityFlags) {
         queue.async {
-            let isUsingWifi = !flags.contains(.isWWAN)
             let isReachable = flags.contains(.reachable)
-
-            let notifyForWifi = self.isUsingWifi != isUsingWifi
             let notifyForReachable = self.isReachable != isReachable
-
-            self.isUsingWifi = isUsingWifi
             self.isReachable = isReachable
-
-            if notifyForWifi {
-                self.stateHandler?(State(
-                    lastChange: isUsingWifi ? .cellularToWifi : .wifiToCellular,
-                    isReachable: isReachable
-                ))
-            }
 
             if notifyForReachable {
                 self.stateHandler?(State(
@@ -145,6 +145,19 @@ final class NetworkMonitor {
                     isReachable: isReachable
                 ))
             }
+
+            #if os(iOS) || os(tvOS)
+            let isUsingWifi = !flags.contains(.isWWAN)
+            let notifyForWifi = self.isUsingWifi != isUsingWifi
+            self.isUsingWifi = isUsingWifi
+
+            if notifyForWifi {
+                self.stateHandler?(State(
+                    lastChange: isUsingWifi ? .cellularToWifi : .wifiToCellular,
+                    isReachable: isReachable
+                ))
+            }
+            #endif
         }
     }
 }

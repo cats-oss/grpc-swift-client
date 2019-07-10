@@ -19,6 +19,7 @@
 		C73F5BBA22D49E9D0022566F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BAD22D49E9D0022566F /* Session.swift */; };
 		C73F5BBB22D49E9D0022566F /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BAE22D49E9D0022566F /* Dependency.swift */; };
 		C73F5BBC22D49E9D0022566F /* ChannelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BAF22D49E9D0022566F /* ChannelProtocol.swift */; };
+		C73F5BC622D5B5350022566F /* Streaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5BC522D5B5350022566F /* Streaming.swift */; };
 		C7AB7890212F196B005D21DC /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788C212F196B005D21DC /* BoringSSL.framework */; };
 		C7AB7891212F196B005D21DC /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788D212F196B005D21DC /* CgRPC.framework */; };
 		C7AB7892212F196B005D21DC /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AB788E212F196B005D21DC /* SwiftGRPC.framework */; };
@@ -39,6 +40,7 @@
 		C73F5BAD22D49E9D0022566F /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		C73F5BAE22D49E9D0022566F /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		C73F5BAF22D49E9D0022566F /* ChannelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelProtocol.swift; sourceTree = "<group>"; };
+		C73F5BC522D5B5350022566F /* Streaming.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streaming.swift; sourceTree = "<group>"; };
 		C7AB784F212F16CB005D21DC /* SwiftGRPCClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGRPCClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7AB7888212F192B005D21DC /* SwiftGRPCClient-Carthage.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "SwiftGRPCClient-Carthage.xcconfig"; sourceTree = "<group>"; };
 		C7AB788C212F196B005D21DC /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = Carthage/Build/iOS/BoringSSL.framework; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				C73F5BA822D49E9D0022566F /* Request.swift */,
 				C73F5BAD22D49E9D0022566F /* Session.swift */,
 				C73F5BA522D49E9D0022566F /* Stream.swift */,
+				C73F5BC522D5B5350022566F /* Streaming.swift */,
 				C73F5BA922D49E9D0022566F /* StreamingError.swift */,
 				C73F5BAC22D49E9D0022566F /* SwiftGRPCClient.h */,
 			);
@@ -209,6 +212,7 @@
 				C73F5BB522D49E9D0022566F /* Request.swift in Sources */,
 				C73F5BB622D49E9D0022566F /* StreamingError.swift in Sources */,
 				C73F5BBC22D49E9D0022566F /* ChannelProtocol.swift in Sources */,
+				C73F5BC622D5B5350022566F /* Streaming.swift in Sources */,
 				C73F5BB822D49E9D0022566F /* MessageType.swift in Sources */,
 				C73F5BB222D49E9D0022566F /* Stream.swift in Sources */,
 				C73F5BB022D49E9D0022566F /* NetworkMonitor.swift in Sources */,

@@ -129,6 +129,9 @@ open class Stream<R: Request>: Streaming {
     }
 
     private func resetRetryCount() {
+        lock.lock()
+        defer { lock.unlock() }
+
         retryCount = 5
     }
 

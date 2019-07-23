@@ -21,7 +21,7 @@ PODS:
   - SwiftGRPC (0.9.1):
     - gRPC-Core (~> 1.19.0)
     - SwiftProtobuf (~> 1.5.0)
-  - SwiftGRPCClient (0.4.0):
+  - SwiftGRPCClient (0.6.0):
     - SwiftGRPC (= 0.9.1)
   - SwiftProtobuf (1.5.0)
 
@@ -45,9 +45,9 @@ SPEC CHECKSUMS:
   gRPC-Core: bd9472c8daa2e414b9f8038ba667bf56ce0e02b8
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SwiftGRPC: 43d3e8db88f97e7386bd44f159ecdfad02ce3362
-  SwiftGRPCClient: 7807de9cde4dec69c8bba4454d0e9a7995d4a2d2
+  SwiftGRPCClient: 5368d6fa8821531bdbbd1611cc8d9ee1d2021fe4
   SwiftProtobuf: 241400280f912735c1e1b9fe675fdd2c6c4d42e2
 
 PODFILE CHECKSUM: 8e508383db2f15029b4dc1866a65f0cba69cd7a5
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.7.5

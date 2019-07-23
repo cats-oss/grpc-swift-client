@@ -62,6 +62,9 @@ public protocol Request {
     /// Streaming type
     var style: CallStyle { get }
 
+    /// Streaming request
+    var request: InputType { get }
+
     /// A timeout value in seconds. Default is 1 day (60 * 60 * 24 seconds).
     var timeout: TimeInterval { get }
 
@@ -112,17 +115,17 @@ public extension Request {
     func intercept(metadata: Metadata) throws -> Metadata {
         return metadata
     }
-}
 
-public extension Request where InputType: SwiftProtobuf.Message {
     func buildRequest() -> InputType {
-        return InputType()
+        return request
     }
 
     func buildRequest(_ message: Void) -> InputType {
         return buildRequest()
     }
+}
 
+public extension Request where InputType: SwiftProtobuf.Message {
     func serialized() throws -> Data {
         return try buildRequest().serializedData()
     }

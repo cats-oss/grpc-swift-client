@@ -126,6 +126,10 @@ public extension Request {
 }
 
 public extension Request where InputType: SwiftProtobuf.Message {
+    var request: InputType {
+        return InputType()
+    }
+
     func serialized() throws -> Data {
         return try buildRequest().serializedData()
     }

@@ -8,13 +8,6 @@
 import Foundation
 import SwiftProtobufPluginLibrary
 
-enum GenerationError: Error {
-    /// Raised when parsing the parameter string and found an unknown key
-    case unknownParameter(name: String)
-    /// Raised when a parameter was giving an invalid value
-    case invalidParameterValue(name: String, value: String)
-}
-
 struct GeneratorPlugin {
     private enum Mode {
         case showHelp
@@ -47,6 +40,8 @@ struct GeneratorPlugin {
         var paths: [String] = []
         for arg in args {
             switch arg {
+            case "-h", "--help":
+                return .showHelp
             case "--version":
                 return .showVersion
             default:
@@ -68,24 +63,24 @@ struct GeneratorPlugin {
         print("")
 
         let help = ("""
-                    This is a plugin for protoc and should not normally be run directly.\n
-                    \n
-                    --version: Print the program version\n
-                    \n
+                    This is a plugin for protoc and should not normally be run directly.
+                    If you invoke a recent version of protoc with the --swiftgrpc-client_out=<dir>
+                    option, then protoc will search the current PATH for protoc-gen-swiftgrpc-client
+                    and use it to generate Swift output.
+
+                    -h|--help:  Print this help message
+                    --version: Print the program version
                     """)
 
         print(help)
     }
 
     private func showVersion() {
-        print("\(CommandLine.programName) 0.1.1")
+        print("\(CommandLine.programName) 0.5.0")
     }
 
     private func generateFromStdin() -> Int32 {
-        guard let requestData = Stdin.readall() else {
-            Stderr.print("Failed to read request")
-            return 1
-        }
+        let requestData = FileHandle.standardInput.readDataToEndOfFile()
 
         // Support for loggin the request. Useful when protoc/protoc-gen-swift are
         // being invoked from some build system/script. protoc-gen-swift supports
@@ -161,6 +156,8 @@ struct GeneratorPlugin {
         } catch GenerationError.invalidParameterValue(let name, let value) {
             return Google_Protobuf_Compiler_CodeGeneratorResponse(
                 error: "Unknown value for generation parameter '\(name)': '\(value)'")
+        } catch GenerationError.wrappedError(let message, let e) {
+            return Google_Protobuf_Compiler_CodeGeneratorResponse(error: "\(message): \(e)")
         } catch let e {
             return Google_Protobuf_Compiler_CodeGeneratorResponse(
                 error: "Internal Error parsing request options: \(e)")
@@ -170,11 +167,11 @@ struct GeneratorPlugin {
         var responseFiles: [Google_Protobuf_Compiler_CodeGeneratorResponse.File] = []
 
         for fileDescriptor in descriptorSet.files where fileDescriptor.services.count > 0 {
-            let grpcGenerator = FileGenerator(fileDescriptor, options: options)
+            let fileGenerator = FileGenerator(fileDescriptor: fileDescriptor, generatorOptions: options)
             var printer = CodePrinter()
-            grpcGenerator.generateOutputFile(printer: &printer)
+            fileGenerator.generateOutputFile(printer: &printer)
             responseFiles.append(
-                Google_Protobuf_Compiler_CodeGeneratorResponse.File(name: grpcGenerator.outputFilename,
+                Google_Protobuf_Compiler_CodeGeneratorResponse.File(name: fileGenerator.outputFilename,
                                                                     content: printer.content))
         }
 
@@ -189,7 +186,7 @@ struct GeneratorPlugin {
             Stderr.print("Failure while serializing response: \(e)")
             return false
         }
-        Stdout.write(bytes: serializedResponse)
+        FileHandle.standardOutput.write(serializedResponse)
         return true
     }
 

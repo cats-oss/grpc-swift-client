@@ -15,13 +15,25 @@ final class FileGenerator {
     var outputFilename: String {
         let ext = ".grpc.client.swift"
         let pathParts = splitPath(pathname: fileDescriptor.name)
-        return pathParts.dir + pathParts.base + ext
+
+        switch generatorOptions.outputNaming {
+        case .FullPath:
+            return pathParts.dir + pathParts.base + ext
+        case .PathToUnderscores:
+            let dirWithUnderscores = pathParts.dir.replacingOccurrences(of: "/", with: "_")
+            return dirWithUnderscores + pathParts.base + ext
+        case .DropPath:
+            return pathParts.base + ext
+        }
     }
 
-    init(_ file: FileDescriptor, options: GeneratorOptions) {
-        self.fileDescriptor = file
-        self.generatorOptions = options
-        self.namer = SwiftProtobufNamer(currentFile: file, protoFileToModuleMappings: ProtoFileToModuleMappings())
+    init(fileDescriptor: FileDescriptor, generatorOptions: GeneratorOptions) {
+        self.fileDescriptor = fileDescriptor
+        self.generatorOptions = generatorOptions
+        self.namer = SwiftProtobufNamer(
+            currentFile: fileDescriptor,
+            protoFileToModuleMappings: generatorOptions.protoToModuleMappings
+        )
     }
 }
 

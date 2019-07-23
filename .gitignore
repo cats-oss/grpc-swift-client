@@ -6,7 +6,9 @@
 build/
 DerivedData/
 protoc-gen-swift
+protoc-gen-swiftgrpc
 protoc-gen-swiftgrpc-client
+!Sources/protoc-gen-swiftgrpc-client
 SwiftGRPCClient.xcodeproj
 
 ## Various settings

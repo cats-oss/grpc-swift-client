@@ -158,12 +158,10 @@ Define the `Request` object using `protocol` in the generated `.swift`.
 
 ```swift
 struct EchoGetRequest: Echo_EchoGetRequest {
-    var text = ""
+    var request = Echo_EchoRequest()
 
-    func buildRequest() -> Echo_EchoRequest {
-        var request = Echo_EchoRequest()
+    init(text: String) {
         request.text = text
-        return request
     }
 }
 ```

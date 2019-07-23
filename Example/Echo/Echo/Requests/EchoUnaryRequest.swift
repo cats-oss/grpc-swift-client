@@ -9,11 +9,9 @@
 import Foundation
 
 struct EchoUnaryRequest: Echo_EchoGetRequest {
-    var text = ""
+    var request = Echo_EchoRequest()
 
-    func buildRequest() -> InputType {
-        var request = Echo_EchoRequest()
+    init(text: String) {
         request.text = text
-        return request
     }
 }

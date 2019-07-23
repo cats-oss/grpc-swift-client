@@ -9,11 +9,9 @@
 import Foundation
 
 struct EchoServerRequest: Echo_EchoExpandRequest {
-    var text = "server streaming request"
+    var request = Echo_EchoRequest()
 
-    func buildRequest() -> InputType {
-      var request = InputType()
-      request.text = text
-      return request
+    init() {
+        request.text = "server streaming request"
     }
 }

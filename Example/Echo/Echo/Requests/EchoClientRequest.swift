@@ -9,8 +9,10 @@
 import Foundation
 
 struct EchoClientRequest: Echo_EchoCollectRequest {
+    var request = Echo_EchoRequest()
+
     func buildRequest(_ message: String) -> InputType {
-        var request = InputType()
+        var request = self.request
         request.text = message
         return request
     }

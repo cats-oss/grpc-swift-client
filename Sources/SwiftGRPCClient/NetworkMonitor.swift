@@ -114,7 +114,7 @@ public final class NetworkMonitor {
             if let newCellularName = newCellularName, self.cellularName != newCellularName {
                 self.cellularName = newCellularName
                 self.stateHandler?(State(
-                    lastChange: .cellularTechnology(technology: newCellularName),
+                    change: .cellularTechnology(technology: newCellularName),
                     isReachable: self.isReachable
                 ))
             }
@@ -146,7 +146,7 @@ public final class NetworkMonitor {
 
             if notifyForReachable {
                 self.stateHandler?(State(
-                    lastChange: .reachability(isReachable: isReachable),
+                    change: .reachability(isReachable: isReachable),
                     isReachable: isReachable
                 ))
             }
@@ -158,7 +158,7 @@ public final class NetworkMonitor {
 
             if notifyForWifi {
                 self.stateHandler?(State(
-                    lastChange: isUsingWifi ? .cellularToWifi : .wifiToCellular,
+                    change: isUsingWifi ? .cellularToWifi : .wifiToCellular,
                     isReachable: isReachable
                 ))
             }

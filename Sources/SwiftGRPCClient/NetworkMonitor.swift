@@ -15,36 +15,36 @@ import SystemConfiguration
 /// switching between 3G and LTE, enabling/disabling airplane mode, etc.
 /// Read more: https://github.com/grpc/grpc-swift/tree/master/README.md#known-issues
 /// Original issue: https://github.com/grpc/grpc-swift/issues/337
-final class NetworkMonitor {
+public final class NetworkMonitor {
     private let queue: DispatchQueue
     private let reachability: SCNetworkReachability
     private let notification: NotificationCenter
 
     #if os(iOS)
     /// Instance of network info being used for obtaining cellular technology names.
-    let cellularInfo = CTTelephonyNetworkInfo()
+    public let cellularInfo = CTTelephonyNetworkInfo()
     /// Name of the cellular technology being used (e.g., `CTRadioAccessTechnologyLTE`).
-    private(set) var cellularName: String?
+    public private(set) var cellularName: String?
     #endif
     #if os(iOS) || os(tvOS)
     /// Whether the device is currently using wifi (versus cellular).
-    private(set) var isUsingWifi: Bool
+    public private(set) var isUsingWifi: Bool
     #endif
     /// Whether the network is currently reachable. Backed by `SCNetworkReachability`.
-    private(set) var isReachable: Bool
+    public private(set) var isReachable: Bool
     /// Network state handler.
-    var stateHandler: ((State) -> Void)?
+    public var stateHandler: ((State) -> Void)?
 
     /// Represents a state of connectivity.
-    struct State: Equatable {
+    public struct State: Equatable {
         /// The most recent change that was made to the state.
-        let lastChange: Change
+        public let lastChange: Change
         /// Whether this state is currently reachable/online.
-        let isReachable: Bool
+        public let isReachable: Bool
     }
 
     /// A change in network condition.
-    enum Change: Equatable {
+    public enum Change: Equatable {
         /// Reachability changed (online <> offline).
         case reachability(isReachable: Bool)
         /// The device switched from cellular to wifi.
@@ -55,7 +55,7 @@ final class NetworkMonitor {
         case cellularTechnology(technology: String)
     }
 
-    init?(
+    public init?(
         host: String = "google.com",
         queue: DispatchQueue = DispatchQueue(label: "SwiftGRPCClient.NetworkMonitor.queue"),
         notification: NotificationCenter = NotificationCenter.default,

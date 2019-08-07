@@ -38,9 +38,14 @@ public final class NetworkMonitor {
     /// Represents a state of connectivity.
     public struct State: Equatable {
         /// The most recent change that was made to the state.
-        public let lastChange: Change
+        public var lastChange: Change
         /// Whether this state is currently reachable/online.
-        public let isReachable: Bool
+        public var isReachable: Bool
+
+        public init(change: Change, isReachable: Bool) {
+            self.lastChange = change
+            self.isReachable = isReachable
+        }
     }
 
     /// A change in network condition.

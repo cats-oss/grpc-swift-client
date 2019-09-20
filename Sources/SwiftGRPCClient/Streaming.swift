@@ -24,9 +24,6 @@ public protocol Streaming: class {
 
     /// Abort connection to server.
     func cancel()
-
-    /// Discard internally held `Call` objects.
-    func refresh()
 }
 
 extension Streaming where Request: UnaryRequest {

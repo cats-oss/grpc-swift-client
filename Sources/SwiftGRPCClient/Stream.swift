@@ -95,7 +95,7 @@ open class Stream<R: Request>: Streaming {
         try? call.get().cancel()
     }
 
-    open func refresh() {
+    private func refresh() {
         lock.lock()
         defer { lock.unlock() }
 

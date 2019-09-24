@@ -3,13 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1A1B0E156B2561E2FE705417 /* Pods_Echo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8626176CE8D72DEDC4EAD76 /* Pods_Echo.framework */; };
+		C73F5B9E22D2D9870022566F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F5B9D22D2D9870022566F /* ChatViewController.swift */; };
 		C7559017212F9CA500FCF504 /* echo.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7559016212F9CA500FCF504 /* echo.grpc.swift */; };
 		C76F5AE421315BE400BE7A7E /* EchoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F5AE321315BE400BE7A7E /* EchoProvider.swift */; };
+		C79611F322CC3795004FAC36 /* chat.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79611EE22CC3795004FAC36 /* chat.pb.swift */; };
+		C79611F422CC3795004FAC36 /* chat.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79611F022CC3795004FAC36 /* chat.grpc.swift */; };
+		C79611F522CC3795004FAC36 /* data.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79611F122CC3795004FAC36 /* data.pb.swift */; };
+		C79611F822CC3A62004FAC36 /* chat.grpc.client.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79611F722CC3A62004FAC36 /* chat.grpc.client.swift */; };
 		C7AB78A6212F2180005D21DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB78A5212F2180005D21DC /* AppDelegate.swift */; };
 		C7AB78A8212F2180005D21DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB78A7212F2180005D21DC /* ViewController.swift */; };
 		C7AB78AB212F2180005D21DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7AB78A9212F2180005D21DC /* Main.storyboard */; };
@@ -181,11 +186,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "CyberAgent, Inc.";
 				TargetAttributes = {
 					C7AB78A1212F2180005D21DC = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -428,7 +434,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.cyberagent.SwiftGRPCClient.Echo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -447,7 +453,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.cyberagent.SwiftGRPCClient.Echo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

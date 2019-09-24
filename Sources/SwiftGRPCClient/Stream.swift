@@ -49,7 +49,7 @@ open class Stream<R: Request>: Streaming {
 
         monitoringNetowrk(for: type, completion: completion)
 
-        guard type == .receive || networkMonitor?.isReachable ?? false else {
+        guard (type.isReceiveing && type.isRetryable) || networkMonitor?.isReachable ?? false else {
             return completion(.failure(.notConnectedToInternet))
         }
 
@@ -119,57 +119,55 @@ open class Stream<R: Request>: Streaming {
         lock.lock()
         defer { lock.unlock() }
 
+        guard type.isRetryable && networkMonitor?.isReachable ?? false else {
+            return false
+        }
+
         let isRetryable = retryCount >= 1
         guard isRetryable else { return false }
         retryCount -= 1
 
-        guard type == .send || type == .receive else {
-            return false
-        }
-
         queue.asyncAfter(deadline: .now() + 3) { [weak self] in
             guard let me = self else { return }
 
-            let isReachable = me.networkMonitor?.isReachable ?? false
-            me.refreshIfReachedToNetwork(isReachable)
+            if me.networkMonitor?.isReachable ?? false {
+                me.refresh()
 
-            if type == .receive && isReachable {
-                me.start(for: type, completion: completion)
+                if type.isReceiveing {
+                    me.start(for: type, completion: completion)
+                }
             }
         }
 
         return true
     }
 
-    private func refreshIfReachedToNetwork(_ isReachable: Bool) {
-        if isReachable {
-            refresh()
-        } else {
-            cancel()
-        }
-    }
-
     private func monitoringNetowrk(for type: MessageType, completion: @escaping (Result<CallResult?, StreamingError>) -> Void) {
         switch type {
-        case .data, .close:
-            break
-
-        case .send:
+        case .send(true):
             if networkMonitor?.stateHandler == nil {
                 networkMonitor?.stateHandler = { [weak self] state in
-                    self?.resetRetryCount()
-                    self?.refreshIfReachedToNetwork(state.isReachable)
+                    if state.isReachable {
+                        self?.resetRetryCount()
+                        self?.refresh()
+                    }
                 }
             }
 
-        case .receive:
+        case .receive(true):
             networkMonitor?.stateHandler = { [weak self] state in
-                self?.resetRetryCount()
-                self?.refreshIfReachedToNetwork(state.isReachable)
                 if state.isReachable {
-                    self?.start(for: type, completion: completion)
+                    self?.resetRetryCount()
+                    self?.refresh()
+
+                    if type.isRetryable {
+                        self?.start(for: type, completion: completion)
+                    }
                 }
             }
+
+        case .data, .close, .send, .receive:
+            break
         }
     }
 }

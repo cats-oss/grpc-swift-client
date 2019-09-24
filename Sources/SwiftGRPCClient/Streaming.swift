@@ -57,11 +57,13 @@ extension Streaming where Request: SendRequest, Message == Request.Message {
     ///
     /// - Parameters:
     ///   - message: object sending to server.
+    ///   - shouldRetryWhenFailed: retry when fail to send message.
     ///   - completion: closure called when message sending is completed.
     /// - Returns: Streaming object
     @discardableResult
-    public func send(_ message: Message, completion: ((Result<Void, StreamingError>) -> Void)? = nil) -> Self {
-        start(for: .send) { [weak self] result in
+    public func send(_ message: Message, shouldRetryWhenFailed shouldRetry: Bool? = nil, completion: ((Result<Void, StreamingError>) -> Void)? = nil) -> Self {
+        let shouldRetry = shouldRetry ?? dependency.shouldReconnectWhenRetryableStreamingFailed
+        start(for: .send(shouldRetry: shouldRetry)) { [weak self] result in
             guard let me = self else {
                 return
             }
@@ -84,11 +86,14 @@ extension Streaming where Request: SendRequest, Message == Request.Message {
 extension Streaming where Request: ReceiveRequest {
     /// For receive message from server
     ///
-    /// - Parameter completion: closure called when receive data from server
+    /// - Parameters:
+    ///   - shouldRetryWhenFailed: retry when fail to send message.
+    ///   - completion: closure called when receive data from server.
     /// - Returns: Streaming object
     @discardableResult
-    public func receive(_ completion: @escaping (Result<Request.OutputType, StreamingError>) -> Void) -> Self {
-        start(for: .receive) { [weak self] result in
+    public func receive(shouldRetryWhenFailed shouldRetry: Bool? = nil, _ completion: @escaping (Result<Request.OutputType, StreamingError>) -> Void) -> Self {
+        let shouldRetry = shouldRetry ?? dependency.shouldReconnectWhenRetryableStreamingFailed
+        start(for: .receive(shouldRetry: shouldRetry)) { [weak self] result in
             func receive() {
                 do {
                     // check start error

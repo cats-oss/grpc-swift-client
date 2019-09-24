@@ -16,11 +16,18 @@ public protocol Dependency {
     /// - Returns: Metadata changed as necessary
     /// - Throws: Error when intercepting request
     func intercept(metadata: Metadata) throws -> Metadata
+
+    /// Reconnect when send or receive streaming if connection failed. Default is true.
+    var shouldReconnectWhenRetryableStreamingFailed: Bool { get }
 }
 
 public extension Dependency {
     func intercept(metadata: Metadata) throws -> Metadata {
         return metadata
+    }
+
+    var shouldReconnectWhenRetryableStreamingFailed: Bool {
+        return true
     }
 }
 

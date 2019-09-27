@@ -10,6 +10,17 @@ import Foundation
 import SwiftProtobuf
 import SwiftGRPC
 
+public protocol ReconnectableRequest {
+    /// Policy for whether to reconnect when the network changes. The policy depends on the Session dependency value. Default is undefined.
+    var reconnectionPolicyWhenChangingNetwork: ReconnectionPolicy { get }
+}
+
+public extension ReconnectableRequest {
+    var reconnectionPolicyWhenChangingNetwork: ReconnectionPolicy {
+        return .undefined
+    }
+}
+
 /// Unary connection is possible.
 public protocol UnaryRequest: Request {}
 extension UnaryRequest {
@@ -22,8 +33,8 @@ extension UnaryRequest {
     }
 }
 
-public protocol SendRequest: Request {}
-public protocol ReceiveRequest: Request {}
+public protocol SendRequest: Request, ReconnectableRequest {}
+public protocol ReceiveRequest: Request, ReconnectableRequest {}
 public protocol CloseRequest: Request {}
 public protocol CloseAndReciveRequest: Request {}
 

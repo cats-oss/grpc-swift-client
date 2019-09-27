@@ -17,8 +17,8 @@ public protocol Dependency {
     /// - Throws: Error when intercepting request
     func intercept(metadata: Metadata) throws -> Metadata
 
-    /// Reconnect when send or receive streaming if connection failed. Default is true.
-    var shouldReconnectWhenRetryableStreamingFailed: Bool { get }
+    /// Policy for whether to reconnect when the network changes. Default is reconnect.
+    var reconnectionPolicyWhenChangingNetwork: ReconnectionPolicy { get }
 }
 
 public extension Dependency {
@@ -26,8 +26,8 @@ public extension Dependency {
         return metadata
     }
 
-    var shouldReconnectWhenRetryableStreamingFailed: Bool {
-        return true
+    var reconnectionPolicyWhenChangingNetwork: ReconnectionPolicy {
+        return .reconnect
     }
 }
 

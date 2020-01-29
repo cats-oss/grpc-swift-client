@@ -6,10 +6,10 @@
 build/
 DerivedData/
 protoc-gen-swift
-protoc-gen-swiftgrpc
-protoc-gen-swiftgrpc-client
-!Sources/protoc-gen-swiftgrpc-client
-SwiftGRPCClient.xcodeproj
+protoc-gen-grpc-swift
+protoc-gen-grpc-client-swift
+!Sources/protoc-gen-grpc-client-swift
+GRPCClient.xcodeproj
 
 ## Various settings
 *.pbxuser

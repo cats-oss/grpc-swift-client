@@ -47,7 +47,7 @@ private struct RadioAccessTechnologyMock: RadioAccessTechnologyNotificationProto
 /// Read more: https://github.com/grpc/grpc-swift/tree/master/README.md#known-issues
 /// Original issue: https://github.com/grpc/grpc-swift/issues/337
 public final class NetworkMonitor: RadioAccessTechnologyObserverProtocol {
-    public static let queueName = "SwiftGRPCClient.NetworkMonitor.queue"
+    public static let queueName = "GRPCClient.NetworkMonitor.queue"
     private let queue: DispatchQueue
     private let reachability: SCNetworkReachability
 

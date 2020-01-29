@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iPp-pI-Zx6">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iPp-pI-Zx6">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +12,7 @@
             <objects>
                 <navigationController id="iPp-pI-Zx6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cOD-A0-bsH">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -39,7 +36,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" id="r6W-s2-fbI">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r6W-s2-fbI" id="APJ-XQ-0xL">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -66,6 +63,7 @@
                     <connections>
                         <outlet property="tableView" destination="ct3-vJ-7XN" id="Juj-oH-TUx"/>
                         <segue destination="iqo-yQ-CgQ" kind="show" identifier="Streaming" id="5wF-Hw-lO8"/>
+                        <segue destination="Ww8-N4-DJa" kind="show" identifier="Echo" id="XHd-Vc-yvT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zyV-uf-uXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -81,27 +79,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VtD-S1-vnS">
-                                <rect key="frame" x="40" y="84" width="34" height="30"/>
+                                <rect key="frame" x="40" y="64" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startButtonDidTapWithSender:" destination="iqo-yQ-CgQ" eventType="touchUpInside" id="rv6-cT-9n4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBI-7O-bv1">
-                                <rect key="frame" x="114" y="84" width="32" height="30"/>
+                                <rect key="frame" x="114" y="64" width="32" height="30"/>
                                 <state key="normal" title="Stop"/>
                                 <connections>
                                     <action selector="stopButtonDidTapWithSender:" destination="iqo-yQ-CgQ" eventType="touchUpInside" id="GvB-D3-DLn"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Print Log" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PTW-s7-i8d">
-                                <rect key="frame" x="0.0" y="130" width="375" height="537"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cow-OL-NjD">
-                                <rect key="frame" x="186" y="84" width="39" height="30"/>
+                                <rect key="frame" x="186" y="64" width="39" height="30"/>
                                 <state key="normal" title="Clean"/>
                                 <connections>
                                     <action selector="cleanButtonDidTapWithSender:" destination="iqo-yQ-CgQ" eventType="touchUpInside" id="J4B-g3-7wf"/>
@@ -131,6 +129,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IWX-J8-KHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="652" y="261.31934032983509"/>
+        </scene>
+        <!--Echo View Controller-->
+        <scene sceneID="1Y5-Lw-4ff">
+            <objects>
+                <viewController id="Ww8-N4-DJa" customClass="EchoViewController" customModule="Echo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Vy-Qq-dbP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyC-xc-4ST">
+                                <rect key="frame" x="40" y="64" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startButtonDidTapWithSender:" destination="Ww8-N4-DJa" eventType="touchUpInside" id="IZ1-hS-zYW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTR-id-CaB">
+                                <rect key="frame" x="114" y="64" width="32" height="30"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopButtonDidTapWithSender:" destination="Ww8-N4-DJa" eventType="touchUpInside" id="rSY-0o-Kux"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Print Log" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cP2-PB-YTL">
+                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaR-cX-m2W">
+                                <rect key="frame" x="186" y="64" width="39" height="30"/>
+                                <state key="normal" title="Clean"/>
+                                <connections>
+                                    <action selector="cleanButtonDidTapWithSender:" destination="Ww8-N4-DJa" eventType="touchUpInside" id="D44-b2-s8X"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cP2-PB-YTL" firstAttribute="top" secondItem="QyC-xc-4ST" secondAttribute="bottom" constant="16" id="4k2-JP-J8j"/>
+                            <constraint firstItem="cP2-PB-YTL" firstAttribute="leading" secondItem="8bv-jj-OLd" secondAttribute="leading" id="EDC-zu-82U"/>
+                            <constraint firstItem="ZTR-id-CaB" firstAttribute="leading" secondItem="QyC-xc-4ST" secondAttribute="trailing" constant="40" id="Oaq-CF-k8p"/>
+                            <constraint firstItem="8bv-jj-OLd" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZaR-cX-m2W" secondAttribute="trailing" id="Tuw-dF-YhN"/>
+                            <constraint firstItem="ZaR-cX-m2W" firstAttribute="leading" secondItem="ZTR-id-CaB" secondAttribute="trailing" constant="40" id="WXx-4P-GKX"/>
+                            <constraint firstItem="ZaR-cX-m2W" firstAttribute="top" secondItem="8bv-jj-OLd" secondAttribute="top" constant="20" id="Xqd-6G-UTC"/>
+                            <constraint firstItem="cP2-PB-YTL" firstAttribute="trailing" secondItem="8bv-jj-OLd" secondAttribute="trailing" id="cqO-JL-Vzf"/>
+                            <constraint firstItem="QyC-xc-4ST" firstAttribute="top" secondItem="8bv-jj-OLd" secondAttribute="top" constant="20" id="hz3-lg-djA"/>
+                            <constraint firstItem="ZTR-id-CaB" firstAttribute="top" secondItem="8bv-jj-OLd" secondAttribute="top" constant="20" id="iBO-73-o8L"/>
+                            <constraint firstItem="QyC-xc-4ST" firstAttribute="leading" secondItem="8bv-jj-OLd" secondAttribute="leading" constant="40" id="qHV-7q-ffq"/>
+                            <constraint firstItem="cP2-PB-YTL" firstAttribute="bottom" secondItem="8bv-jj-OLd" secondAttribute="bottom" id="vB9-wP-srN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8bv-jj-OLd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uve-F3-uIb"/>
+                    <connections>
+                        <outlet property="textView" destination="cP2-PB-YTL" id="iO4-qw-gOf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uni-99-9FG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="652" y="1034"/>
         </scene>
     </scenes>
 </document>

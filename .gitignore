@@ -10,6 +10,7 @@ protoc-gen-grpc-swift
 protoc-gen-grpc-client-swift
 !Sources/protoc-gen-grpc-client-swift
 GRPCClient.xcodeproj
+Echo.xcodeproj
 
 ## Various settings
 *.pbxuser

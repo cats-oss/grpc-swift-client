@@ -7,16 +7,28 @@
 //
 
 import UIKit
-import SwiftGRPC
+import GRPC
+import NIO
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let insecureServer = ServiceServer(address: "localhost:8082", serviceProviders: [EchoProvider()])
+    let group = PlatformSupport.makeEventLoopGroup(loopCount: 1)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        insecureServer.start()
+        let configuration = Server.Configuration(
+            target: .hostAndPort("localhost", 8082),
+            eventLoopGroup: group,
+            serviceProviders: [EchoProvider()]
+        )
+
+        let server = Server.start(configuration: configuration)
+        server.map {
+            $0.channel.localAddress
+        }.whenSuccess { address in
+            print("server started on port \(address!.port!)")
+        }
 
         return true
     }

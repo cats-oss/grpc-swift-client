@@ -56,11 +56,20 @@ open class Session: SessionProtocol {
         try? eventLoopGroup.syncShutdownGracefully()
     }
 
-    public init(host: String, port: Int, headers: HPACKHeaders = HPACKHeaders(), dependency: Dependency = StreamingDependency()) {
+    public init(
+        host: String,
+        port: Int,
+        tls: ClientConnection.Configuration.TLS? = ClientConnection.Configuration.TLS(),
+        connectionBackoff: ConnectionBackoff? = ConnectionBackoff(),
+        headers: HPACKHeaders = HPACKHeaders(),
+        dependency: Dependency = StreamingDependency()
+    ) {
         self.headers = headers
         self.configuration = ClientConnection.Configuration(
             target: .hostAndPort(host, port),
-            eventLoopGroup: eventLoopGroup
+            eventLoopGroup: eventLoopGroup,
+            tls: tls,
+            connectionBackoff: connectionBackoff
         )
         self.connection = ClientConnection(configuration: configuration)
 

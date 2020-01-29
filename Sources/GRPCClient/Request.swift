@@ -23,15 +23,15 @@ public protocol ClientStreamingRequest: SendRequest {}
 public protocol BidirectionalStreamingRequest: ReceiveRequest, SendRequest {}
 
 public protocol Request {
-    associatedtype InputType: SwiftProtobuf.Message
-    associatedtype OutputType: SwiftProtobuf.Message
+    associatedtype Request: SwiftProtobuf.Message
+    associatedtype Response: SwiftProtobuf.Message
     associatedtype Message
 
     /// Streaming Method
     var method: CallMethod { get }
     
     /// Streaming request
-    var request: InputType { get }
+    var request: Request { get }
 
     /// A timeout value. Default is infinite.
     var timeout: GRPCTimeout { get }
@@ -42,13 +42,13 @@ public protocol Request {
     /// Create a Request object for sending to server finally
     ///
     /// - Returns: Request object for sending to server
-    func buildRequest() -> InputType
+    func buildRequest() -> Request
 
     /// Create a Request object for sending to server finally
     ///
     /// - Parameter message: object to be sent
     /// - Returns: Request object for sending to server
-    func buildRequest(_ message: Message) -> InputType
+    func buildRequest(_ message: Message) -> Request
 
     /// Called just before sending the request.
     ///
@@ -59,8 +59,8 @@ public protocol Request {
 }
 
 public extension Request {
-    var request: InputType {
-        InputType()
+    var request: Request {
+        Request()
     }
 
     var timeout: GRPCTimeout {
@@ -71,11 +71,11 @@ public extension Request {
         headers
     }
 
-    func buildRequest() -> InputType {
+    func buildRequest() -> Request {
         request
     }
 
-    func buildRequest(_ message: Void) -> InputType {
+    func buildRequest(_ message: Void) -> Request {
         buildRequest()
     }
 

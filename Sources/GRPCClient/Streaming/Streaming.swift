@@ -5,5 +5,5 @@ public protocol Streaming: AnyObject {
     var request: R { get }
     var call: Result<Call, StreamingError> { get }
 
-    func responseHandler(_ handler: @escaping (Result<R.OutputType, StreamingError>) -> Void) throws
+    func responseHandler(_ handler: @escaping (Result<R.Response, StreamingError>) -> Void) throws
 }

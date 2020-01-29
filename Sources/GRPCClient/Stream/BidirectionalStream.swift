@@ -1,10 +1,10 @@
 import GRPC
 
 public final class BidirectionalStream<R: Request>: Stream<R>, Streaming, SendableStreaming, ReceivableStreaming {
-    private var handlers: [(Result<R.OutputType, StreamingError>) -> Void] = []
-    private lazy var callResult: Result<BidirectionalStreamingCall<R.InputType, R.OutputType>, StreamingError> = {
+    private var handlers: [(Result<R.Response, StreamingError>) -> Void] = []
+    private lazy var callResult: Result<BidirectionalStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {
-            return .success(try BidirectionalStreamingCall<R.InputType, R.OutputType>(
+            return .success(try BidirectionalStreamingCall<R.Request, R.Response>(
                 connection: connection,
                 path: request.method.path,
                 callOptions: CallOptions(
@@ -28,11 +28,11 @@ public final class BidirectionalStream<R: Request>: Stream<R>, Streaming, Sendab
         }
     }()
 
-    public var call: Result<BidirectionalStreamingCall<R.InputType, R.OutputType>, StreamingError> {
+    public var call: Result<BidirectionalStreamingCall<R.Request, R.Response>, StreamingError> {
         sync { callResult }
     }
 
-    public func responseHandler(_ handler: @escaping (Result<R.OutputType, StreamingError>) -> Void) throws {
+    public func responseHandler(_ handler: @escaping (Result<R.Response, StreamingError>) -> Void) throws {
         sync { handlers.append(handler) }
     }
 }

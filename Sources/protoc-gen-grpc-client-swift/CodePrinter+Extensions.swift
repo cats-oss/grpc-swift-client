@@ -1,10 +1,3 @@
-//
-//  CodePrinter+Extensions.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2018/08/10.
-//
-
 import SwiftProtobufPluginLibrary
 
 extension CodePrinter {

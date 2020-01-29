@@ -1,10 +1,3 @@
-//
-//  GenerationError.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2019/07/23.
-//
-
 enum GenerationError: Error {
     /// Raised when parsing the parameter string and found an unknown key
     case unknownParameter(name: String)

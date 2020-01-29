@@ -1,10 +1,3 @@
-//
-//  GeneratorOptions.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2018/08/09.
-//
-
 import Foundation
 import SwiftProtobufPluginLibrary
 
@@ -32,6 +25,7 @@ final class GeneratorOptions {
     let outputNaming: OutputNaming
     let protoToModuleMappings: ProtoFileToModuleMappings
     let visibility: Visibility
+    private(set) var extraModuleImports: [String] = []
 
     init(parameter: String?) throws {
         var outputNaming: OutputNaming = .FullPath
@@ -44,8 +38,7 @@ final class GeneratorOptions {
                 if let naming = OutputNaming(rawValue: pair.value) {
                     outputNaming = naming
                 } else {
-                    throw GenerationError.invalidParameterValue(name: pair.key,
-                                                                value: pair.value)
+                    throw GenerationError.invalidParameterValue(name: pair.key, value: pair.value)
                 }
             case "ProtoPathModuleMappings":
                 if !pair.value.isEmpty {
@@ -61,8 +54,13 @@ final class GeneratorOptions {
                 if let value = Visibility(rawValue: pair.value) {
                     visibility = value
                 } else {
-                    throw GenerationError.invalidParameterValue(name: pair.key,
-                                                                value: pair.value)
+                    throw GenerationError.invalidParameterValue(name: pair.key, value: pair.value)
+                }
+            case "ExtraModuleImports":
+                if !pair.value.isEmpty {
+                    extraModuleImports.append(pair.value)
+                } else {
+                    throw GenerationError.invalidParameterValue(name: pair.key, value: pair.value)
                 }
             default:
                 throw GenerationError.unknownParameter(name: pair.key)

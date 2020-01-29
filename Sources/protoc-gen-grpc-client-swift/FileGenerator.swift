@@ -1,10 +1,3 @@
-//
-//  FileGenerator.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2018/08/10.
-//
-
 import SwiftProtobufPluginLibrary
 
 final class FileGenerator {
@@ -48,8 +41,21 @@ extension FileGenerator {
             //
             """)
 
-        for moduleName in ["Foundation", "SwiftGRPCClient"] {
+        let moduleNames = [
+            "Foundation",
+            "GRPCClient"
+        ]
+
+        for moduleName in (moduleNames + generatorOptions.extraModuleImports).sorted() {
             p.println("import \(moduleName)")
+        }
+
+        let moduleMappings = generatorOptions.protoToModuleMappings
+        if let serviceProtoModuleName = moduleMappings.moduleName(forFile: fileDescriptor) {
+            p.println("import \(serviceProtoModuleName)")
+        }
+        for importedProtoModuleName in moduleMappings.neededModules(forFile: fileDescriptor) ?? [] {
+            p.println("import \(importedProtoModuleName)")
         }
         p.println()
 

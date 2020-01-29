@@ -1,10 +1,3 @@
-//
-//  ServiceGenerator.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2018/08/09.
-//
-
 import SwiftProtobufPluginLibrary
 
 final class ServiceGenerator {

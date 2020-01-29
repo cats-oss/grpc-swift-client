@@ -1,10 +1,3 @@
-//
-//  FileIo.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2018/08/09.
-//
-
 import Foundation
 
 // The I/O code below is derived from Apple's swift-protobuf project.

@@ -6,7 +6,7 @@ public protocol ReceivableStreaming: CancellableStreaming {
 
 public extension ReceivableStreaming where Self: Streaming, Call: ReceivableCall {
     @discardableResult
-    func receive(_ handler: @escaping (Result<R.OutputType, StreamingError>) -> Void) -> Self {
+    func receive(_ handler: @escaping (Result<R.Response, StreamingError>) -> Void) -> Self {
         do {
             try responseHandler(handler)
             try call.get().statusHandler { status in

@@ -1,10 +1,3 @@
-//
-//  MethodGenerator.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2018/08/09.
-//
-
 import SwiftProtobufPluginLibrary
 
 final class MethodGenerator {
@@ -48,8 +41,8 @@ extension MethodGenerator {
 
         p.println("// MARK: - \(packageServiceName) \(method.name) Request")
         p.printScope("\(visibility)protocol \(_request)") { p in
-            p.println("typealias InputType = \(methodInputName)")
-            p.println("typealias OutputType = \(methodOutputName)")
+            p.println("typealias Request = \(methodInputName)")
+            p.println("typealias Response = \(methodOutputName)")
         }
 
         p.println()

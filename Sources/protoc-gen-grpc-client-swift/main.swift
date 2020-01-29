@@ -1,10 +1,3 @@
-//
-//  main.swift
-//  protoc-gen-swiftgrpc-client
-//
-//  Created by Kyohei Ito on 2018/08/10.
-//
-
 import Foundation
 import SwiftProtobufPluginLibrary
 
@@ -64,8 +57,8 @@ struct GeneratorPlugin {
 
         let help = ("""
                     This is a plugin for protoc and should not normally be run directly.
-                    If you invoke a recent version of protoc with the --swiftgrpc-client_out=<dir>
-                    option, then protoc will search the current PATH for protoc-gen-swiftgrpc-client
+                    If you invoke a recent version of protoc with the --grpc-client-swift_out=<dir>
+                    option, then protoc will search the current PATH for protoc-gen-grpc-client-swift
                     and use it to generate Swift output.
 
                     -h|--help:  Print this help message
@@ -76,7 +69,7 @@ struct GeneratorPlugin {
     }
 
     private func showVersion() {
-        print("\(CommandLine.programName) 0.5.0")
+        print("\(CommandLine.programName) 1.0.0-alpha.1")
     }
 
     private func generateFromStdin() -> Int32 {

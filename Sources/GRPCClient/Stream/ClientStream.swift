@@ -1,9 +1,9 @@
 import GRPC
 
 public final class ClientStream<R: Request>: Stream<R>, Streaming, SendableStreaming {
-    private lazy var callResult: Result<ClientStreamingCall<R.InputType, R.OutputType>, StreamingError> = {
+    private lazy var callResult: Result<ClientStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {
-            return .success(try ClientStreamingCall<R.InputType, R.OutputType>(
+            return .success(try ClientStreamingCall<R.Request, R.Response>(
                 connection: connection,
                 path: request.method.path,
                 callOptions: CallOptions(
@@ -19,18 +19,18 @@ public final class ClientStream<R: Request>: Stream<R>, Streaming, SendableStrea
         }
     }()
 
-    public var call: Result<ClientStreamingCall<R.InputType, R.OutputType>, StreamingError> {
+    public var call: Result<ClientStreamingCall<R.Request, R.Response>, StreamingError> {
         sync { callResult }
     }
 
-    public func responseHandler(_ handler: @escaping (Result<R.OutputType, StreamingError>) -> Void) throws {
+    public func responseHandler(_ handler: @escaping (Result<R.Response, StreamingError>) -> Void) throws {
         try call.get().response.whenComplete { result in
             handler(result.mapError(StreamingError.init))
         }
     }
 
     @discardableResult
-    public func sendEnd(completed: @escaping ((Result<R.OutputType, StreamingError>) -> Void)) -> Self {
+    public func sendEnd(completed: @escaping ((Result<R.Response, StreamingError>) -> Void)) -> Self {
         do {
             try responseHandler(completed)
             return sendEnd()

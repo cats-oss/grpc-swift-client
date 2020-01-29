@@ -14,7 +14,7 @@ extension SessionProtocol {
     ///
     /// - Parameter request: object conforming to UnaryRequest protocol
     /// - Returns: object for Cancel
-    public func data<R: UnaryRequest>(with request: R, completionHandler: @escaping (Result<R.OutputType, StreamingError>) -> Void) -> CancellableStreaming {
+    public func data<R: UnaryRequest>(with request: R, completionHandler: @escaping (Result<R.Response, StreamingError>) -> Void) -> CancellableStreaming {
         Unary(request: request, headers: headers, connection: connection, configuration: configuration, dependency: dependency)
             .data(completionHandler)
     }

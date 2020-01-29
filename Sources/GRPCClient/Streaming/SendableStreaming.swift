@@ -9,7 +9,7 @@ public protocol SendableStreaming: CancellableStreaming {
     func sendEnd(completed: ((Result<Void, StreamingError>) -> Void)?) -> Self
 }
 
-public extension SendableStreaming where Self: Streaming, Call: SendableCall, Call.Message == R.InputType {
+public extension SendableStreaming where Self: Streaming, Call: SendableCall, Call.Message == R.Request {
     @discardableResult
     func send(_ message: R.Message) -> Self {
         send(message, completed: nil)

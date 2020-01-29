@@ -1,10 +1,10 @@
 import GRPC
 
 public final class ServerStream<R: Request>: Stream<R>, Streaming, ReceivableStreaming {
-    private var handlers: [(Result<R.OutputType, StreamingError>) -> Void] = []
-    private lazy var callResult: Result<ServerStreamingCall<R.InputType, R.OutputType>, StreamingError> = {
+    private var handlers: [(Result<R.Response, StreamingError>) -> Void] = []
+    private lazy var callResult: Result<ServerStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {
-            return .success(try ServerStreamingCall<R.InputType, R.OutputType>(
+            return .success(try ServerStreamingCall<R.Request, R.Response>(
                 connection: connection,
                 path: request.method.path,
                 request: request.buildRequest(),
@@ -29,11 +29,11 @@ public final class ServerStream<R: Request>: Stream<R>, Streaming, ReceivableStr
         }
     }()
 
-    public var call: Result<ServerStreamingCall<R.InputType, R.OutputType>, StreamingError> {
+    public var call: Result<ServerStreamingCall<R.Request, R.Response>, StreamingError> {
         sync { callResult }
     }
 
-    public func responseHandler(_ handler: @escaping (Result<R.OutputType, StreamingError>) -> Void) throws {
+    public func responseHandler(_ handler: @escaping (Result<R.Response, StreamingError>) -> Void) throws {
         sync { handlers.append(handler) }
     }
 }

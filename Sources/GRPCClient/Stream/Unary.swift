@@ -1,9 +1,9 @@
 import GRPC
 
 final class Unary<R: Request>: Stream<R>, Streaming, CancellableStreaming {
-    private lazy var callResult: Result<UnaryCall<R.InputType, R.OutputType>, StreamingError> = {
+    private lazy var callResult: Result<UnaryCall<R.Request, R.Response>, StreamingError> = {
         do {
-            return .success(try UnaryCall<R.InputType, R.OutputType>(
+            return .success(try UnaryCall<R.Request, R.Response>(
                 connection: connection,
                 path: request.method.path,
                 request: request.buildRequest(),
@@ -20,18 +20,18 @@ final class Unary<R: Request>: Stream<R>, Streaming, CancellableStreaming {
         }
     }()
 
-    public var call: Result<UnaryCall<R.InputType, R.OutputType>, StreamingError> {
+    public var call: Result<UnaryCall<R.Request, R.Response>, StreamingError> {
         sync { callResult }
     }
 
-    public func responseHandler(_ handler: @escaping (Result<R.OutputType, StreamingError>) -> Void) throws {
+    public func responseHandler(_ handler: @escaping (Result<R.Response, StreamingError>) -> Void) throws {
         try call.get().response.whenComplete { result in
             handler(result.mapError(StreamingError.init))
         }
     }
 
     @discardableResult
-    public func data(_ completed: @escaping (Result<R.OutputType, StreamingError>) -> Void) -> Self {
+    public func data(_ completed: @escaping (Result<R.Response, StreamingError>) -> Void) -> Self {
         do {
             try responseHandler(completed)
         }

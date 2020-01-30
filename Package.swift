@@ -19,11 +19,7 @@ let package = Package(
         .package(url: "https://github.com/grpc/grpc-swift.git", .exact("1.0.0-alpha.9"))
     ],
     targets: [
-        .target(name: "GRPCClient",
-                dependencies: ["GRPC"]),
-        .target(name: "protoc-gen-grpc-client-swift",
-                dependencies: [
-                    "SwiftProtobufPluginLibrary",
-                    "protoc-gen-swift"])
+        .target(name: "GRPCClient", dependencies: ["GRPC"]),
+        .target(name: "protoc-gen-grpc-client-swift", dependencies: ["SwiftProtobufPluginLibrary"])
     ]
 )

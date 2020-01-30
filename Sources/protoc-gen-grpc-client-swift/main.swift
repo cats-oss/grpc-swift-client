@@ -69,7 +69,7 @@ struct GeneratorPlugin {
     }
 
     private func showVersion() {
-        print("\(CommandLine.programName) 1.0.0-alpha.1")
+        print("\(CommandLine.programName) 1.0.0-alpha.2")
     }
 
     private func generateFromStdin() -> Int32 {

@@ -1,11 +1,17 @@
 public protocol SendableStreaming: CancellableStreaming {
     associatedtype Message
 
+    @discardableResult
     func send(_ message: Message) -> Self
+    @discardableResult
     func send(_ message: Message, completed: ((Result<Void, StreamingError>) -> Void)?) -> Self
+    @discardableResult
     func send(_ messages: [Message]) -> Self
+    @discardableResult
     func send(_ messages: [Message], completed: ((Result<Void, StreamingError>) -> Void)?) -> Self
+    @discardableResult
     func sendEnd() -> Self
+    @discardableResult
     func sendEnd(completed: ((Result<Void, StreamingError>) -> Void)?) -> Self
 }
 

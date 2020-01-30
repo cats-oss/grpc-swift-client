@@ -1,6 +1,7 @@
 public protocol ReceivableStreaming: CancellableStreaming {
     associatedtype Response
 
+    @discardableResult
     func receive(_ handler: @escaping (Result<Response, StreamingError>) -> Void) -> Self
 }
 

@@ -23,8 +23,8 @@ public protocol ClientStreamingRequest: SendRequest {}
 public protocol BidirectionalStreamingRequest: ReceiveRequest, SendRequest {}
 
 public protocol Request {
-    associatedtype Request: SwiftProtobuf.Message
-    associatedtype Response: SwiftProtobuf.Message
+    associatedtype Request: Payload
+    associatedtype Response: Payload
     associatedtype Message
 
     /// Streaming Method

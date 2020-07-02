@@ -4,15 +4,13 @@ public final class BidirectionalStream<R: Request>: Stream<R>, Streaming, Sendab
     private var handlers: [(Result<R.Response, StreamingError>) -> Void] = []
     private lazy var callResult: Result<BidirectionalStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {
-            return .success(try BidirectionalStreamingCall<R.Request, R.Response>(
-                connection: connection,
+            return .success(try connection.makeBidirectionalStreamingCall(
                 path: request.method.path,
                 callOptions: CallOptions(
                     customMetadata: request.intercept(headers: dependency.intercept(headers: headers)),
                     timeout: request.timeout,
                     cacheable: request.cacheable
-                ),
-                errorDelegate: configuration.errorDelegate
+                )
             ) { [weak self] response in
                 self?.sync {
                     self?.handlers.forEach { handler in

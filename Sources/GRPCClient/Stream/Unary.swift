@@ -3,16 +3,14 @@ import GRPC
 final class Unary<R: Request>: Stream<R>, Streaming, CancellableStreaming {
     private lazy var callResult: Result<UnaryCall<R.Request, R.Response>, StreamingError> = {
         do {
-            return .success(try UnaryCall<R.Request, R.Response>(
-                connection: connection,
+            return .success(try connection.makeUnaryCall(
                 path: request.method.path,
                 request: request.buildRequest(),
                 callOptions: CallOptions(
                     customMetadata: request.intercept(headers: dependency.intercept(headers: headers)),
                     timeout: request.timeout,
                     cacheable: request.cacheable
-                ),
-                errorDelegate: configuration.errorDelegate
+                )
             ))
         }
         catch {

@@ -16,8 +16,8 @@ let package = Package(
         .executable(name: "protoc-gen-grpc-client-swift", targets: ["protoc-gen-grpc-client-swift"])
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.7.0")),
-        .package(url: "https://github.com/grpc/grpc-swift.git", .exact("1.0.0-alpha.9"))
+        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.9.0")),
+        .package(url: "https://github.com/grpc/grpc-swift.git", .exact("1.0.0-alpha.14"))
     ],
     targets: [
         .target(name: "GRPCClient", dependencies: ["GRPC"]),

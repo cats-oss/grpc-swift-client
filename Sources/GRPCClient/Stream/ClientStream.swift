@@ -3,15 +3,13 @@ import GRPC
 public final class ClientStream<R: Request>: Stream<R>, Streaming, SendableStreaming {
     private lazy var callResult: Result<ClientStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {
-            return .success(try ClientStreamingCall<R.Request, R.Response>(
-                connection: connection,
+            return .success(try connection.makeClientStreamingCall(
                 path: request.method.path,
                 callOptions: CallOptions(
                     customMetadata: request.intercept(headers: dependency.intercept(headers: headers)),
                     timeout: request.timeout,
                     cacheable: request.cacheable
-                ),
-                errorDelegate: configuration.errorDelegate
+                )
             ))
         }
         catch {

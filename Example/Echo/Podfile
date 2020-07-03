@@ -1,8 +1,8 @@
-platform :ios, '9.0'
+source 'https://cdn.cocoapods.org/'
+platform :ios, '10.0'
 
 target 'Echo' do
-  use_frameworks!
-
-  pod 'SwiftGRPCClient', :path => '../../'
-
+    use_frameworks!
+  
+    pod 'gRPC-Client-Swift', :path => '../../'
 end

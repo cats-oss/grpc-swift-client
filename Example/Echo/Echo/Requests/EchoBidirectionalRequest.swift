@@ -11,7 +11,7 @@ import Foundation
 struct EchoBidirectionalRequest: Echo_EchoUpdateRequest {
     var request = Echo_EchoRequest()
 
-    func buildRequest(_ message: String) -> InputType {
+    func buildRequest(_ message: String) -> Request {
         var request = self.request
         request.text = message
         return request

@@ -1,22 +1,45 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "SwiftGRPCClient",
+    name: "GRPCClient",
+    platforms: [
+        .macOS(.v10_14),
+        .iOS(.v12),
+        .tvOS(.v12),
+        .watchOS(.v6)
+    ],
     products: [
-        .library(name: "SwiftGRPCClient", targets: ["SwiftGRPCClient"])
+        .library(
+            name: "GRPCClient",
+            targets: ["GRPCClient"]),
+        .executable(
+            name: "protoc-gen-grpc-client-swift",
+            targets: ["protoc-gen-grpc-client-swift"]
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf.git", .upToNextMinor(from: "1.5.0")),
-        .package(url: "https://github.com/grpc/grpc-swift.git", from: "0.9.1")
+        .package(
+            name: "SwiftProtobuf",
+            url: "https://github.com/apple/swift-protobuf.git",
+            .upToNextMinor(from: "1.9.0")
+        ),
+        .package(
+            name: "grpc-swift",
+            url: "https://github.com/grpc/grpc-swift.git",
+            .exact("1.0.0-alpha.14")
+        )
     ],
     targets: [
-        .target(name: "SwiftGRPCClient",
-                dependencies: ["SwiftGRPC"]),
-        .target(name: "protoc-gen-swiftgrpc-client",
-                dependencies: [
-                    "SwiftProtobufPluginLibrary",
-                    "protoc-gen-swift"])
-    ])
+        .target(
+            name: "GRPCClient",
+            dependencies: [.product(name: "GRPC", package: "grpc-swift")]
+        ),
+        .target(
+            name: "protoc-gen-grpc-client-swift",
+            dependencies: [.product(name: "SwiftProtobufPluginLibrary", package: "SwiftProtobuf")]
+        )
+    ]
+)

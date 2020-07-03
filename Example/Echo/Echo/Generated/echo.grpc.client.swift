@@ -5,7 +5,8 @@
 // Source: echo.proto
 //
 import Foundation
-import SwiftGRPCClient
+import GRPC
+import GRPCClient
 
 // MARK: - Echo Request Method
 enum Echo_EchoMethod: String, CallMethod {
@@ -18,57 +19,61 @@ enum Echo_EchoMethod: String, CallMethod {
 }
 
 // MARK: - Echo_Echo Get Request
-protocol _Echo_EchoGetRequest {
-  typealias InputType = Echo_EchoRequest
-  typealias OutputType = Echo_EchoResponse
+public protocol _Echo_EchoGetRequest {
+  typealias Request = Echo_EchoRequest
+  typealias Response = Echo_EchoResponse
 }
 
-protocol Echo_EchoGetRequest: _Echo_EchoGetRequest, UnaryRequest {}
+public protocol Echo_EchoGetRequest: _Echo_EchoGetRequest, UnaryRequest {}
 
-extension Echo_EchoGetRequest {
+public extension Echo_EchoGetRequest {
   var method: CallMethod {
     return Echo_EchoMethod.get
   }
 }
 
 // MARK: - Echo_Echo Expand Request
-protocol _Echo_EchoExpandRequest {
-  typealias InputType = Echo_EchoRequest
-  typealias OutputType = Echo_EchoResponse
+public protocol _Echo_EchoExpandRequest {
+  typealias Request = Echo_EchoRequest
+  typealias Response = Echo_EchoResponse
 }
 
-protocol Echo_EchoExpandRequest: _Echo_EchoExpandRequest, ServerStreamingRequest {}
+public protocol Echo_EchoExpandRequest: _Echo_EchoExpandRequest, ServerStreamingRequest {}
 
-extension Echo_EchoExpandRequest {
+public extension Echo_EchoExpandRequest {
   var method: CallMethod {
     return Echo_EchoMethod.expand
   }
 }
 
 // MARK: - Echo_Echo Collect Request
-protocol _Echo_EchoCollectRequest {
-  typealias InputType = Echo_EchoRequest
-  typealias OutputType = Echo_EchoResponse
+public protocol _Echo_EchoCollectRequest {
+  typealias Request = Echo_EchoRequest
+  typealias Response = Echo_EchoResponse
 }
 
-protocol Echo_EchoCollectRequest: _Echo_EchoCollectRequest, ClientStreamingRequest {}
+public protocol Echo_EchoCollectRequest: _Echo_EchoCollectRequest, ClientStreamingRequest {}
 
-extension Echo_EchoCollectRequest {
+public extension Echo_EchoCollectRequest {
   var method: CallMethod {
     return Echo_EchoMethod.collect
   }
 }
 
 // MARK: - Echo_Echo Update Request
-protocol _Echo_EchoUpdateRequest {
-  typealias InputType = Echo_EchoRequest
-  typealias OutputType = Echo_EchoResponse
+public protocol _Echo_EchoUpdateRequest {
+  typealias Request = Echo_EchoRequest
+  typealias Response = Echo_EchoResponse
 }
 
-protocol Echo_EchoUpdateRequest: _Echo_EchoUpdateRequest, BidirectionalStreamingRequest {}
+public protocol Echo_EchoUpdateRequest: _Echo_EchoUpdateRequest, BidirectionalStreamingRequest {}
 
-extension Echo_EchoUpdateRequest {
+public extension Echo_EchoUpdateRequest {
   var method: CallMethod {
     return Echo_EchoMethod.update
   }
 }
+
+// Provides conformance to `GRPCPayload`
+extension Echo_EchoRequest: GRPCProtobufPayload {}
+extension Echo_EchoResponse: GRPCProtobufPayload {}

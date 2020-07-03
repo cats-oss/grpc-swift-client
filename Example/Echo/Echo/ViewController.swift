@@ -1,18 +1,17 @@
-//
-//  ViewController.swift
-//  Echo
-//
-//  Created by Kyohei Ito on 2018/08/24.
-//  Copyright © 2018年 CyberAgent, Inc. All rights reserved.
-//
-
 import UIKit
-import SwiftGRPC
+import GRPC
+
+enum CallStyle {
+    case unary, serverStreaming, clientStreaming, bidiStreaming
+}
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
-    let items: [CallStyle] = [.unary, .serverStreaming, .clientStreaming, .bidiStreaming]
+    let items: [[CallStyle]] = [
+        [.unary, .serverStreaming, .clientStreaming, .bidiStreaming],
+        [.unary, .serverStreaming, .clientStreaming, .bidiStreaming]
+    ]
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,23 +24,35 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        items.count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        items[section].count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
-        cell.textLabel?.text = "\(items[indexPath.row])"
+        cell.textLabel?.text = (indexPath.section == 0 ? "Streaming" : "Echo") + " \(items[indexPath.section][indexPath.row])"
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "Streaming", sender: nil)
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: "Streaming", sender: nil)
+        } else if indexPath.section == 1 {
+            performSegue(withIdentifier: "Echo", sender: nil)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = tableView.indexPathForSelectedRow, let controller = segue.destination as? StreamingViewController {
-            controller.style = items[indexPath.row]
+        if let indexPath = tableView.indexPathForSelectedRow {
+            if let controller = segue.destination as? StreamingViewController {
+                controller.style = items[indexPath.section][indexPath.row]
+            } else if let controller = segue.destination as? EchoViewController {
+                controller.style = items[indexPath.section][indexPath.row]
+            }
         }
     }
 }

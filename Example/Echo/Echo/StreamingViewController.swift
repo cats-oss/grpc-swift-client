@@ -1,14 +1,5 @@
-//
-//  StreamingViewController.swift
-//  Echo
-//
-//  Created by Kyohei Ito on 2018/01/23.
-//  Copyright © 2018年 CyberAgent, Inc. All rights reserved.
-//
-
 import UIKit
-import SwiftGRPC
-import SwiftGRPCClient
+import GRPCClient
 
 class StreamingViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
@@ -17,17 +8,10 @@ class StreamingViewController: UIViewController {
 
     var count = 0
 
-    var unaryStream: SwiftGRPCClient.Stream<EchoUnaryRequest>?
-    var clientStream = Session.shared.stream(with: EchoClientRequest())
-    var serverStream = Session.shared.stream(with: EchoServerRequest())
-    var bidiStream = Session.shared.stream(with: EchoBidirectionalRequest())
-
-    deinit {
-        unaryStream?.cancel()
-        clientStream.cancel()
-        serverStream.cancel()
-        bidiStream.cancel()
-    }
+    var unary: CancellableStreaming?
+    lazy var clientStream = Session.shared.stream(with: EchoClientRequest())
+    lazy var serverStream = Session.shared.stream(with: EchoServerRequest())
+    lazy var bidiStream = Session.shared.stream(with: EchoBidirectionalRequest())
 
     func print<T>(_ value: T) {
         if Thread.isMainThread {
@@ -41,6 +25,8 @@ class StreamingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = "Streaming"
 
         if style == .bidiStreaming {
             bidiStream
@@ -57,10 +43,9 @@ class StreamingViewController: UIViewController {
 
         switch style {
         case .unary:
-            unaryStream = Session.shared.stream(with: EchoUnaryRequest(text: "send message"))
-                .data { [weak self] in
-                    self?.print($0)
-                }
+            unary = Session.shared.data(with: EchoUnaryRequest(text: "\(count)")) { [weak self] in
+                self?.print($0)
+            }
 
         case .serverStreaming:
             serverStream
@@ -88,20 +73,24 @@ class StreamingViewController: UIViewController {
 
         switch style {
         case .unary:
-            unaryStream?.cancel()
+            unary?.cancel { [weak self] in
+                self?.print($0)
+            }
 
         case .serverStreaming:
-            serverStream.cancel()
+            serverStream.cancel() { [weak self] in
+                self?.print($0)
+            }
 
         case .clientStreaming:
             clientStream
-                .closeAndReceive { [weak self] in
+                .sendEnd { [weak self] in
                     self?.print($0)
                 }
 
         case .bidiStreaming:
             bidiStream
-                .close { [weak self] in
+                .sendEnd { [weak self] in
                     self?.print($0)
                 }
 

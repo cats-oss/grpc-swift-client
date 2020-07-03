@@ -1,6 +1,5 @@
 # Swift gRPC Client
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/SwiftGRPCClient.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGRPCClient)
 [![License](https://img.shields.io/cocoapods/l/SwiftGRPCClient.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGRPCClient)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftGRPCClient.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGRPCClient)
@@ -76,16 +75,6 @@ Add the following to your `Podfile`:
 ```ruby
 pod 'SwiftGRPCClient'
 ```
-
-#### Carthage
-
-Add the following to your `Cartfile`:
-
-```
-github "cats-oss/grpc-swift-client"
-```
-
-Then, add `BoringSSL`, `CgRPC`, `SwiftProtobuf`, `SwiftGRPC` and `SwiftGRPCClient` on link binary and `carthage copy-frameworks`.
 
 ## protoc-gen-swiftgrpc-client
 

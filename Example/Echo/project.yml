@@ -1,0 +1,35 @@
+name: Echo
+configs:
+  Debug: debug
+  Release: release
+options:
+  groupSortPosition: top
+schemes:
+  Echo:
+    build:
+      targets:
+        Echo: all
+    run:
+      config: Debug
+      environmentVariables:
+        OS_ACTIVITY_MODE: disable
+    test:
+      config: Debug
+      targets:
+        - Echo
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
+
+targets:
+  Echo:
+    type: application
+    platform: iOS
+    sources:
+      - path: Echo
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: jp.co.cyberagent.GRPCClient.Echo

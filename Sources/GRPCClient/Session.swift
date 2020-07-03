@@ -6,7 +6,6 @@ public protocol SessionProtocol {
     var dependency: Dependency { get }
     var headers: HPACKHeaders { get }
     var connection: ClientConnection { get }
-    var configuration: ClientConnection.Configuration { get }
 }
 
 extension SessionProtocol {
@@ -16,7 +15,7 @@ extension SessionProtocol {
     /// - Returns: object for Cancel
     @discardableResult
     public func data<R: UnaryRequest>(with request: R, completionHandler: @escaping (Result<R.Response, StreamingError>) -> Void) -> CancellableStreaming {
-        Unary(request: request, headers: headers, connection: connection, configuration: configuration, dependency: dependency)
+        Unary(request: request, headers: headers, connection: connection, dependency: dependency)
             .data(completionHandler)
     }
 
@@ -25,7 +24,7 @@ extension SessionProtocol {
     /// - Parameter request: object conforming to ServerStreamingRequest protocol
     /// - Returns: object for server streaming
     public func stream<R: ServerStreamingRequest>(with request: R) -> ServerStream<R> {
-        ServerStream(request: request, headers: headers, connection: connection, configuration: configuration, dependency: dependency)
+        ServerStream(request: request, headers: headers, connection: connection, dependency: dependency)
     }
 
     /// Create a ClientStream
@@ -33,7 +32,7 @@ extension SessionProtocol {
     /// - Parameter request: object conforming to ClientStreamingRequest protocol
     /// - Returns: object for client streaming
     public func stream<R: ClientStreamingRequest>(with request: R) -> ClientStream<R> {
-        ClientStream(request: request, headers: headers, connection: connection, configuration: configuration, dependency: dependency)
+        ClientStream(request: request, headers: headers, connection: connection, dependency: dependency)
     }
 
     /// Create a BidirectionalStream
@@ -41,16 +40,15 @@ extension SessionProtocol {
     /// - Parameter request: object conforming to BidirectionalStreamingRequest protocol
     /// - Returns: object for bi-directional streaming
     public func stream<R: BidirectionalStreamingRequest>(with request: R) -> BidirectionalStream<R> {
-        BidirectionalStream(request: request, headers: headers, connection: connection, configuration: configuration, dependency: dependency)
+        BidirectionalStream(request: request, headers: headers, connection: connection, dependency: dependency)
     }
 }
 
 open class Session: SessionProtocol {
-    private let eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
-    public var dependency: Dependency
-    public var headers: HPACKHeaders
-    public var connection: ClientConnection
-    public var configuration: ClientConnection.Configuration
+    private let eventLoopGroup = PlatformSupport.makeEventLoopGroup(loopCount: System.coreCount)
+    public let dependency: Dependency
+    public let headers: HPACKHeaders
+    public let connection: ClientConnection
 
     deinit {
         try? connection.close().wait()
@@ -60,19 +58,17 @@ open class Session: SessionProtocol {
     public init(
         host: String,
         port: Int,
-        tls: ClientConnection.Configuration.TLS? = ClientConnection.Configuration.TLS(),
-        connectionBackoff: ConnectionBackoff? = ConnectionBackoff(),
+        isTLSRequired: Bool = true,
         headers: HPACKHeaders = HPACKHeaders(),
         dependency: Dependency = StreamingDependency()
     ) {
         self.headers = headers
-        self.configuration = ClientConnection.Configuration(
-            target: .hostAndPort(host, port),
-            eventLoopGroup: eventLoopGroup,
-            tls: tls,
-            connectionBackoff: connectionBackoff
-        )
-        self.connection = ClientConnection(configuration: configuration)
+        let builder = isTLSRequired
+            ? ClientConnection.secure(group: eventLoopGroup)
+            : ClientConnection.insecure(group: eventLoopGroup)
+
+        self.connection = builder
+            .connect(host: host, port: port)
 
         self.dependency = dependency
     }

@@ -39,5 +39,12 @@ extension ServiceGenerator {
             p.println()
             MethodGenerator(method: $0, generatorOptions: generatorOptions, namer: namer).generateMethodProtocol(printer: &p)
         }
+
+        p.println()
+        p.println("// Provides conformance to `GRPCPayload`")
+        for message in service.file.messages {
+            let name = namer.fullName(message: message)
+            p.println("extension \(name): GRPCProtobufPayload {}")
+        }
     }
 }

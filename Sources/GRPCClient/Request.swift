@@ -1,5 +1,5 @@
 import protocol SwiftProtobuf.Message
-import struct GRPC.GRPCTimeout
+import GRPC
 import struct NIOHPACK.HPACKHeaders
 
 /// Unary connection is possible.
@@ -23,8 +23,8 @@ public protocol ClientStreamingRequest: SendRequest {}
 public protocol BidirectionalStreamingRequest: ReceiveRequest, SendRequest {}
 
 public protocol Request {
-    associatedtype Request: Payload
-    associatedtype Response: Payload
+    associatedtype Request: GRPCPayload
+    associatedtype Response: GRPCPayload
     associatedtype Message
 
     /// Streaming Method
@@ -59,10 +59,6 @@ public protocol Request {
 }
 
 public extension Request {
-    var request: Request {
-        Request()
-    }
-
     var timeout: GRPCTimeout {
         .infinite
     }
@@ -81,5 +77,11 @@ public extension Request {
 
     var cacheable: Bool {
         false
+    }
+}
+
+public extension Request where Request: SwiftProtobuf.Message {
+    var request: Request {
+        Request()
     }
 }

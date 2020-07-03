@@ -8,7 +8,6 @@ open class Stream<R: Request> {
     public let request: Request
     let headers: HPACKHeaders
     let connection: ClientConnection
-    let configuration: ClientConnection.Configuration
     let dependency: Dependency
     let queue: DispatchQueue
     private var lock = os_unfair_lock()
@@ -17,12 +16,10 @@ open class Stream<R: Request> {
         request: Request,
         headers: HPACKHeaders,
         connection: ClientConnection,
-        configuration: ClientConnection.Configuration,
         dependency: Dependency,
         queue: DispatchQueue = DispatchQueue(label: "GRPCClient.Stream.receiveQueue")
     ) {
         self.connection = connection
-        self.configuration = configuration
         self.request = request
         self.dependency = dependency
         self.headers = headers

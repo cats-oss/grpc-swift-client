@@ -43,6 +43,7 @@ extension FileGenerator {
 
         let moduleNames = [
             "Foundation",
+            "GRPC",
             "GRPCClient"
         ]
 

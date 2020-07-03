@@ -73,10 +73,14 @@ class StreamingViewController: UIViewController {
 
         switch style {
         case .unary:
-            unary?.cancel()
+            unary?.cancel { [weak self] in
+                self?.print($0)
+            }
 
         case .serverStreaming:
-            serverStream.cancel()
+            serverStream.cancel() { [weak self] in
+                self?.print($0)
+            }
 
         case .clientStreaming:
             clientStream

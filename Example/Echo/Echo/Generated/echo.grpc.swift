@@ -27,29 +27,29 @@ import NIOHTTP1
 import SwiftProtobuf
 
 
-/// Usage: instantiate Echo_EchoServiceClient, then call methods of this protocol to make API calls.
-public protocol Echo_EchoService {
+/// Usage: instantiate Echo_EchoClient, then call methods of this protocol to make API calls.
+public protocol Echo_EchoClientProtocol {
   func get(_ request: Echo_EchoRequest, callOptions: CallOptions?) -> UnaryCall<Echo_EchoRequest, Echo_EchoResponse>
   func expand(_ request: Echo_EchoRequest, callOptions: CallOptions?, handler: @escaping (Echo_EchoResponse) -> Void) -> ServerStreamingCall<Echo_EchoRequest, Echo_EchoResponse>
   func collect(callOptions: CallOptions?) -> ClientStreamingCall<Echo_EchoRequest, Echo_EchoResponse>
   func update(callOptions: CallOptions?, handler: @escaping (Echo_EchoResponse) -> Void) -> BidirectionalStreamingCall<Echo_EchoRequest, Echo_EchoResponse>
 }
 
-public final class Echo_EchoServiceClient: GRPCClient, Echo_EchoService {
-  public let connection: ClientConnection
+public final class Echo_EchoClient: GRPCClient, Echo_EchoClientProtocol {
+  public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions
 
   /// Creates a client for the echo.Echo service.
   ///
   /// - Parameters:
-  ///   - connection: `ClientConnection` to the service host.
+  ///   - channel: `GRPCChannel` to the service host.
   ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  public init(connection: ClientConnection, defaultCallOptions: CallOptions = CallOptions()) {
-    self.connection = connection
+  public init(channel: GRPCChannel, defaultCallOptions: CallOptions = CallOptions()) {
+    self.channel = channel
     self.defaultCallOptions = defaultCallOptions
   }
 
-  /// Asynchronous unary call to Get.
+  /// Unary call to Get
   ///
   /// - Parameters:
   ///   - request: Request to send to Get.
@@ -61,7 +61,7 @@ public final class Echo_EchoServiceClient: GRPCClient, Echo_EchoService {
                               callOptions: callOptions ?? self.defaultCallOptions)
   }
 
-  /// Asynchronous server-streaming call to Expand.
+  /// Server streaming call to Expand
   ///
   /// - Parameters:
   ///   - request: Request to send to Expand.
@@ -75,7 +75,7 @@ public final class Echo_EchoServiceClient: GRPCClient, Echo_EchoService {
                                         handler: handler)
   }
 
-  /// Asynchronous client-streaming call to Collect.
+  /// Client streaming call to Collect
   ///
   /// Callers should use the `send` method on the returned object to send messages
   /// to the server. The caller should send an `.end` after the final message has been sent.
@@ -88,7 +88,7 @@ public final class Echo_EchoServiceClient: GRPCClient, Echo_EchoService {
                                         callOptions: callOptions ?? self.defaultCallOptions)
   }
 
-  /// Asynchronous bidirectional-streaming call to Update.
+  /// Bidirectional streaming call to Update
   ///
   /// Callers should use the `send` method on the returned object to send messages
   /// to the server. The caller should send an `.end` after the final message has been sent.
@@ -149,3 +149,7 @@ extension Echo_EchoProvider {
   }
 }
 
+
+//// Provides conformance to `GRPCPayload`
+//extension Echo_EchoRequest: GRPCProtobufPayload {}
+//extension Echo_EchoResponse: GRPCProtobufPayload {}

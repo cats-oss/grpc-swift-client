@@ -1,13 +1,10 @@
 import GRPC
 import NIO
 
-extension Echo_EchoServiceClient {
-    static let shared = Echo_EchoServiceClient(
-        connection: ClientConnection(
-            configuration: .init(
-                target: .hostAndPort("localhost", 8082),
-                eventLoopGroup: MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
-            )
-        )
+extension Echo_EchoClient {
+    static let shared = Echo_EchoClient(
+        channel: ClientConnection.insecure(
+            group: PlatformSupport.makeEventLoopGroup(loopCount: System.coreCount)
+        ).connect(host: "localhost", port: 8082)
     )
 }

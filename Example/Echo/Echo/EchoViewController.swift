@@ -9,9 +9,9 @@ class EchoViewController: UIViewController {
     var count = 0
 
     var unary: UnaryCall<Echo_EchoRequest, Echo_EchoResponse>?
-    lazy var clientStream = Echo_EchoServiceClient.shared.collect()
+    lazy var clientStream = Echo_EchoClient.shared.collect()
     var serverStream: ServerStreamingCall<Echo_EchoRequest, Echo_EchoResponse>?
-    lazy var bidiStream = Echo_EchoServiceClient.shared.update { [weak self] in
+    lazy var bidiStream = Echo_EchoClient.shared.update { [weak self] in
         self?.print($0)
     }
 
@@ -35,7 +35,7 @@ class EchoViewController: UIViewController {
                 self?.print($0)
             }
         } else if style == .serverStreaming {
-            serverStream = Echo_EchoServiceClient.shared.expand(.with { $0.text = "server streaming request" }) { [weak self] in
+            serverStream = Echo_EchoClient.shared.expand(.with { $0.text = "server streaming request" }) { [weak self] in
                 self?.print($0)
             }
         }
@@ -48,7 +48,7 @@ class EchoViewController: UIViewController {
 
         switch style {
         case .unary:
-            unary = Echo_EchoServiceClient.shared.get(.with { $0.text = "\(count)" })
+            unary = Echo_EchoClient.shared.get(.with { $0.text = "\(count)" })
             unary?.response.whenComplete { [weak self] in
                 self?.print($0)
             }

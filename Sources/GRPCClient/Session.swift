@@ -68,6 +68,9 @@ open class Session: SessionProtocol {
             : ClientConnection.insecure(group: eventLoopGroup)
 
         self.connection = builder
+            .withErrorDelegate(SessionErrorDelegate { error, file, line in
+                dependency.didCatchError(error, file: file, line: line)
+            })
             .connect(host: host, port: port)
 
         self.dependency = dependency

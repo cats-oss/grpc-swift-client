@@ -1,7 +1,3 @@
-packages:
-  GRPC:
-    url: https://github.com/grpc/grpc-swift.git
-    version: 1.0.0-alpha.9
 name: Echo
 configs:
   Debug: debug
@@ -34,19 +30,6 @@ targets:
     platform: iOS
     sources:
       - path: Echo
-    dependencies:
-      - target: GRPCClient
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: jp.co.cyberagent.GRPCClient.Echo
-
-  GRPCClient:
-    type: framework
-    platform: iOS
-    sources:
-      - path: ../../Sources/GRPCClient
-    dependencies:
-      - package: GRPC
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: jp.co.cyberagent.GRPCClient.Echo.GRPCClient

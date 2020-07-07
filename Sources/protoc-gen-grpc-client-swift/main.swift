@@ -159,7 +159,8 @@ struct GeneratorPlugin {
         let descriptorSet = DescriptorSet(protos: request.protoFile)
         var responseFiles: [Google_Protobuf_Compiler_CodeGeneratorResponse.File] = []
 
-        for fileDescriptor in descriptorSet.files where fileDescriptor.services.count > 0 {
+        for name in request.fileToGenerate.sorted() {
+            let fileDescriptor = descriptorSet.lookupFileDescriptor(protoName: name)
             let fileGenerator = FileGenerator(fileDescriptor: fileDescriptor, generatorOptions: options)
             var printer = CodePrinter()
             fileGenerator.generateOutputFile(printer: &printer)

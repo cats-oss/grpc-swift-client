@@ -10,6 +10,12 @@ all:
 
 proto:
 	protoc echo.proto \
-		--plugin=../../protoc-gen-swift --plugin=../../protoc-gen-swiftgrpc-client \
+		--plugin=../../protoc-gen-swift --plugin=../../protoc-gen-grpc-client-swift \
 		--swift_out=Echo/Generated/. --grpc-client-swift_out=Echo/Generated/. \
 		--swift_opt=Visibility=Public --grpc-client-swift_opt=Visibility=Public
+
+client:
+	protoc echo.proto \
+		--plugin=../../protoc-gen-grpc-client-swift \
+		--grpc-client-swift_out=Echo/Generated/. \
+		--grpc-client-swift_opt=Visibility=Public

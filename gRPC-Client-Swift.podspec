@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'gRPC-Client-Swift'
-  s.version          = '1.0.0-alpha.3'
+  s.version          = '1.0.0-alpha.5'
   s.swift_version    = '5.0'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.summary          = 'Client-side library that depends on SwiftGRPC which is a library of gRPC written in Swift.'

@@ -8,7 +8,7 @@ final class Unary<R: Request>: Stream<R>, Streaming, CancellableStreaming {
                 request: request.buildRequest(),
                 callOptions: CallOptions(
                     customMetadata: request.intercept(headers: dependency.intercept(headers: headers)),
-                    timeout: request.timeout,
+                    timeLimit: request.timeLimit,
                     cacheable: request.cacheable
                 )
             ))

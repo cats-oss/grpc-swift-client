@@ -7,7 +7,7 @@ public final class ClientStream<R: Request>: Stream<R>, Streaming, SendableStrea
                 path: request.method.path,
                 callOptions: CallOptions(
                     customMetadata: request.intercept(headers: dependency.intercept(headers: headers)),
-                    timeout: request.timeout,
+                    timeLimit: request.timeLimit,
                     cacheable: request.cacheable
                 )
             ))
@@ -29,14 +29,18 @@ public final class ClientStream<R: Request>: Stream<R>, Streaming, SendableStrea
 
     @discardableResult
     public func sendEnd(completed: @escaping ((Result<R.Response, StreamingError>) -> Void)) -> Self {
-        do {
-            try responseHandler(completed)
-            return sendEnd()
-        }
-        catch {
-            completed(.failure(StreamingError(error)))
-        }
+        sendEnd { [weak self] (result: Result<Void, StreamingError>) in
+            do {
+                _ = try result.get()
+                guard let me = self else {
+                    throw GRPCStatus(code: .internalError, message: "Stream already has deallocated.")
+                }
 
-        return self
+                try me.responseHandler(completed)
+            }
+            catch {
+                completed(.failure(StreamingError(error)))
+            }
+        }
     }
 }

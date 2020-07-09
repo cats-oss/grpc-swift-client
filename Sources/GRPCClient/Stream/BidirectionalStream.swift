@@ -8,7 +8,7 @@ public final class BidirectionalStream<R: Request>: Stream<R>, Streaming, Sendab
                 path: request.method.path,
                 callOptions: CallOptions(
                     customMetadata: request.intercept(headers: dependency.intercept(headers: headers)),
-                    timeout: request.timeout,
+                    timeLimit: request.timeLimit,
                     cacheable: request.cacheable
                 )
             ) { [weak self] response in

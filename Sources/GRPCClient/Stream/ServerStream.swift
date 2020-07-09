@@ -9,7 +9,7 @@ public final class ServerStream<R: Request>: Stream<R>, Streaming, ReceivableStr
                 request: request.buildRequest(),
                 callOptions: CallOptions(
                     customMetadata: request.intercept(headers: dependency.intercept(headers: headers)),
-                    timeout: request.timeout,
+                    timeLimit: request.timeLimit,
                     cacheable: request.cacheable
                 )
             ) { [weak self] response in

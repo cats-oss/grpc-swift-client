@@ -5,8 +5,8 @@ import struct NIOHPACK.HPACKHeaders
 /// Unary connection is possible.
 public protocol UnaryRequest: Request {}
 extension UnaryRequest {
-    public var timeout: GRPCTimeout {
-        .default
+    public var timeLimit: TimeLimit {
+        .timeout(.minutes(1))
     }
 }
 
@@ -33,8 +33,8 @@ public protocol Request {
     /// Streaming request
     var request: Request { get }
 
-    /// A timeout value. Default is infinite.
-    var timeout: GRPCTimeout { get }
+    /// A timeLimit value. Default is infinite.
+    var timeLimit: TimeLimit { get }
 
     /// Whether the call is cacheable. Default is false.
     var cacheable: Bool { get }
@@ -59,8 +59,8 @@ public protocol Request {
 }
 
 public extension Request {
-    var timeout: GRPCTimeout {
-        .infinite
+    var timeLimit: TimeLimit {
+        .none
     }
 
     func intercept(headers: HPACKHeaders) throws -> HPACKHeaders {

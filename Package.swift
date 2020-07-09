@@ -29,7 +29,7 @@ let package = Package(
         .package(
             name: "grpc-swift",
             url: "https://github.com/grpc/grpc-swift.git",
-            .exact("1.0.0-alpha.14")
+            .exact("1.0.0-alpha.16")
         )
     ],
     targets: [

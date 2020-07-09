@@ -11,7 +11,7 @@ public extension ReceivableStreaming where Self: Streaming, Call: ReceivableCall
         do {
             try responseHandler(handler)
             try call.get().statusHandler { status in
-                if status.code != .ok {
+                if !status.isOk {
                     handler(.failure(StreamingError(status)))
                 }
             }

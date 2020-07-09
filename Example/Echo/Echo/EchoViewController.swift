@@ -84,7 +84,9 @@ class EchoViewController: UIViewController {
             }
 
         case .clientStreaming:
-            clientStream.sendEnd(promise: nil)
+            clientStream.sendEnd().whenComplete { [weak self] in
+                self?.print($0)
+            }
 
         case .bidiStreaming:
             bidiStream.sendEnd().whenComplete { [weak self] in

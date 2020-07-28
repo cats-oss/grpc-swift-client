@@ -63,14 +63,5 @@ extension FileGenerator {
         for service in fileDescriptor.services {
             ServiceGenerator(service: service, generatorOptions: generatorOptions, namer: namer).generateService(printer: &p)
         }
-
-        if !fileDescriptor.messages.isEmpty {
-            p.println()
-            p.println("// Provides conformance to `GRPCPayload`")
-            for message in fileDescriptor.messages {
-                let name = namer.fullName(message: message)
-                p.println("extension \(name): GRPCProtobufPayload {}")
-            }
-        }
     }
 }

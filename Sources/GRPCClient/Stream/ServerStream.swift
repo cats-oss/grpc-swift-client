@@ -1,6 +1,7 @@
 import GRPC
+import SwiftProtobuf
 
-public final class ServerStream<R: Request>: Stream<R>, Streaming, ReceivableStreaming {
+public final class ServerStream<R: Request>: Stream<R>, Streaming, ReceivableStreaming where R.Request: Message, R.Response: Message {
     private var handlers: [(Result<R.Response, StreamingError>) -> Void] = []
     private lazy var callResult: Result<ServerStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {

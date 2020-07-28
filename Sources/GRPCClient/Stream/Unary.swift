@@ -1,6 +1,7 @@
 import GRPC
+import SwiftProtobuf
 
-final class Unary<R: Request>: Stream<R>, Streaming, CancellableStreaming {
+final class Unary<R: Request>: Stream<R>, Streaming, CancellableStreaming where R.Request: Message, R.Response: Message {
     private lazy var callResult: Result<UnaryCall<R.Request, R.Response>, StreamingError> = {
         do {
             return .success(try connection.makeUnaryCall(

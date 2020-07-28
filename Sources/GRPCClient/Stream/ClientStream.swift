@@ -1,6 +1,7 @@
 import GRPC
+import SwiftProtobuf
 
-public final class ClientStream<R: Request>: Stream<R>, Streaming, SendableStreaming {
+public final class ClientStream<R: Request>: Stream<R>, Streaming, SendableStreaming where R.Request: Message, R.Response: Message {
     private lazy var callResult: Result<ClientStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {
             return .success(try connection.makeClientStreamingCall(

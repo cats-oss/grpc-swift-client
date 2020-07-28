@@ -1,6 +1,7 @@
 import GRPC
+import SwiftProtobuf
 
-public final class BidirectionalStream<R: Request>: Stream<R>, Streaming, SendableStreaming, ReceivableStreaming {
+public final class BidirectionalStream<R: Request>: Stream<R>, Streaming, SendableStreaming, ReceivableStreaming where R.Request: Message, R.Response: Message {
     private var handlers: [(Result<R.Response, StreamingError>) -> Void] = []
     private lazy var callResult: Result<BidirectionalStreamingCall<R.Request, R.Response>, StreamingError> = {
         do {

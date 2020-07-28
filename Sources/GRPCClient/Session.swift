@@ -1,6 +1,7 @@
 import GRPC
 import NIO
 import NIOHPACK
+import SwiftProtobuf
 
 public protocol SessionProtocol {
     var dependency: Dependency { get }
@@ -14,7 +15,7 @@ extension SessionProtocol {
     /// - Parameter request: object conforming to UnaryRequest protocol
     /// - Returns: object for Cancel
     @discardableResult
-    public func data<R: UnaryRequest>(with request: R, completionHandler: @escaping (Result<R.Response, StreamingError>) -> Void) -> CancellableStreaming {
+    public func data<R: UnaryRequest>(with request: R, completionHandler: @escaping (Result<R.Response, StreamingError>) -> Void) -> CancellableStreaming where R.Request: Message, R.Response: Message {
         Unary(request: request, headers: headers, connection: connection, dependency: dependency)
             .data(completionHandler)
     }

@@ -1,5 +1,5 @@
 import protocol SwiftProtobuf.Message
-import GRPC
+import struct GRPC.TimeLimit
 import struct NIOHPACK.HPACKHeaders
 
 /// Unary connection is possible.
@@ -23,8 +23,8 @@ public protocol ClientStreamingRequest: SendRequest {}
 public protocol BidirectionalStreamingRequest: ReceiveRequest, SendRequest {}
 
 public protocol Request {
-    associatedtype Request: GRPCPayload
-    associatedtype Response: GRPCPayload
+    associatedtype Request
+    associatedtype Response
     associatedtype Message
 
     /// Streaming Method

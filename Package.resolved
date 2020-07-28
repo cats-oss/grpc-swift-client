@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/grpc/grpc-swift.git",
         "state": {
           "branch": null,
-          "revision": "e461a8487b5bd0d8eef0ebf56f7d41401d9ff5ae",
-          "version": "1.0.0-alpha.16"
+          "revision": "39c91a81de04baa1584e5bce9096c448aa2c5369",
+          "version": "1.0.0-alpha.17"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "7f36441e3372665b1b414f8ac93b5905cc42a405",
-          "version": "1.9.0"
+          "revision": "f33185acd089405d365982ccab2f58469052a545",
+          "version": "1.10.2"
         }
       }
     ]

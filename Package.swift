@@ -24,12 +24,12 @@ let package = Package(
         .package(
             name: "SwiftProtobuf",
             url: "https://github.com/apple/swift-protobuf.git",
-            .upToNextMinor(from: "1.9.0")
+            .upToNextMinor(from: "1.10.0")
         ),
         .package(
             name: "grpc-swift",
             url: "https://github.com/grpc/grpc-swift.git",
-            .exact("1.0.0-alpha.16")
+            .exact("1.0.0-alpha.17")
         )
     ],
     targets: [

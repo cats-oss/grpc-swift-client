@@ -1,5 +1,5 @@
 PODS:
-  - CGRPCZlib (1.0.0-alpha.16)
+  - CGRPCZlib (1.0.0-alpha.17)
   - CNIOAtomics (2.19.0)
   - CNIOBoringSSL (2.8.0)
   - CNIOBoringSSLShims (2.8.0):
@@ -8,12 +8,12 @@ PODS:
   - CNIOHTTPParser (2.19.0)
   - CNIOLinux (2.19.0)
   - CNIOSHA1 (2.19.0)
-  - gRPC-Client-Swift (1.0.0-alpha.6):
-    - gRPC-Swift (= 1.0.0-alpha.16)
-  - gRPC-Swift (1.0.0-alpha.16):
-    - CGRPCZlib (= 1.0.0-alpha.16)
+  - gRPC-Client-Swift (1.0.0-alpha.7):
+    - gRPC-Swift (= 1.0.0-alpha.17)
+  - gRPC-Swift (1.0.0-alpha.17):
+    - CGRPCZlib (= 1.0.0-alpha.17)
     - Logging (< 2, >= 1.2.0)
-    - SwiftNIO (< 3, >= 2.18.0)
+    - SwiftNIO (< 3, >= 2.19.0)
     - SwiftNIOHTTP2 (< 2, >= 1.12.2)
     - SwiftNIOSSL (< 3, >= 2.8.0)
     - SwiftNIOTransportServices (< 2, >= 1.6.0)
@@ -56,7 +56,7 @@ PODS:
     - SwiftNIOConcurrencyHelpers (< 3, >= 2.19.0)
     - SwiftNIOFoundationCompat (< 3, >= 2.19.0)
     - SwiftNIOTLS (< 3, >= 2.19.0)
-  - SwiftProtobuf (1.10.0)
+  - SwiftProtobuf (1.10.2)
 
 DEPENDENCIES:
   - gRPC-Client-Swift (from `../../`)
@@ -89,7 +89,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  CGRPCZlib: eb27a55a8336480e3dd3af900b1649e1093d2077
+  CGRPCZlib: 245283cd656bf0c309a48a887c27865d6f54f7ef
   CNIOAtomics: 0d87ebc16f126fdd9c4e68f1a37092e5fc43d531
   CNIOBoringSSL: 00a461e12f1cb148a692df457d6122dca985accf
   CNIOBoringSSLShims: 61d154803c5841e2abf41986df74efd25b1e1cc8
@@ -97,8 +97,8 @@ SPEC CHECKSUMS:
   CNIOHTTPParser: 56fa3561be52ba9b387ca0e11755ef5421fee8f5
   CNIOLinux: 87a599ed230ac8dbdd2846ab989da9af685f90ef
   CNIOSHA1: 5d878498c8a1e9eef54b849a0914ac839256dbb9
-  gRPC-Client-Swift: a4c1398b4d448fdd887333bbd7a70de9a6cf4d83
-  gRPC-Swift: 54420d71d1499585d8576cb8a660192ec0e348de
+  gRPC-Client-Swift: a6412d6f20492ec277b4b8144a1f0606c28dba1e
+  gRPC-Swift: 871cf2df24d9f5424763ae5af7248ed26a1b1314
   Logging: 7838d379d234d7e5ae1265fa02804a9084caf04c
   SwiftNIO: bcf3d3933d419095ee792e8d3b8079e41a99737b
   SwiftNIOConcurrencyHelpers: f4390bc20d6ba994468dc5cfacbbd0f86add9104
@@ -109,7 +109,7 @@ SPEC CHECKSUMS:
   SwiftNIOSSL: 13a36d0fb6e742574a4acab4807f0aebb3fa9b46
   SwiftNIOTLS: acb3279174477adab836874c30008ca9fced9fce
   SwiftNIOTransportServices: 2b8c130457110ef198e10b544b070885815db6c2
-  SwiftProtobuf: bfafffa9e26d1561c3bd0045e188c4fab5f527ae
+  SwiftProtobuf: bec1ae7d686ff73dd09d79866154f4970b891410
 
 PODFILE CHECKSUM: a5ceaa19419e60131f574902bce4f4055b1ea50f
 

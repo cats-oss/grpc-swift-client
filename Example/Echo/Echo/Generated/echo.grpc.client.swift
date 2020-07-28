@@ -73,7 +73,3 @@ public extension Echo_EchoUpdateRequest {
     return Echo_EchoMethod.update
   }
 }
-
-// Provides conformance to `GRPCPayload`
-extension Echo_EchoRequest: GRPCProtobufPayload {}
-extension Echo_EchoResponse: GRPCProtobufPayload {}

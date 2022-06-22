@@ -1,4 +1,4 @@
-import class GRPC.GRPCStatus
+import struct GRPC.GRPCStatus
 
 public enum StreamingError: Error {
     case callCreationError(Error)
